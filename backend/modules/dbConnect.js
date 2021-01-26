@@ -12,6 +12,7 @@ const pool = mariadb.createPool({
 
 var query = mapper.get('userMapper', 'selectUser', { "test_id": "111" });
 
+
 async function getList() {
     let conn, rows;
     try {

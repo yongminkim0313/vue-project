@@ -20,8 +20,12 @@
     "dependencies": {
         "express": "^4.17.1",
         "mariadb": "^2.5.2",
+<<<<<<< HEAD
         "morgan": "^1.10.0",
         "mybatis-mapper": "^0.6.5",
         "winston": "^3.3.3"
+=======
+        "mybatis-mapper": "^0.6.5"
+>>>>>>> decb1dc349b0be32fe804f9322d6bdbc6c7b6eeb
     }
 }
