@@ -1,0 +1,58 @@
+2021-01-26T01:31:14.905Z [winston-test] info: select
+  1
+from
+  dual
+2021-01-26T01:31:55.280Z [winston-test] info: select
+  1
+from
+  dual
+2021-01-26T01:32:45.840Z [winston-test] info: @@@@
+2021-01-26T01:33:03.668Z [winston-test] info: @@@@
+2021-01-26T01:33:03.730Z [winston-test] error: uncaughtException: winston.err is not a function
+TypeError: winston.err is not a function
+    at Object.<anonymous> (C:\git\vue-project\backend\modules\dbConnect.js:17:9)
+    at Module._compile (internal/modules/cjs/loader.js:1063:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)
+    at Module.load (internal/modules/cjs/loader.js:928:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:769:14)
+    at Module.require (internal/modules/cjs/loader.js:952:19)
+    at require (internal/modules/cjs/helpers.js:88:18)
+    at Object.<anonymous> (C:\git\vue-project\backend\index.js:4:12)
+    at Module._compile (internal/modules/cjs/loader.js:1063:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)
+2021-01-26T01:33:07.989Z [winston-test] info: @@@@
+2021-01-26T01:33:07.995Z [winston-test] error: 5555
+2021-01-26T01:34:02.360Z [winston-test] error: uncaughtException: Cannot find module './winstonConfig'
+Require stack:
+- C:\git\vue-project\backend\index.js
+Error: Cannot find module './winstonConfig'
+Require stack:
+- C:\git\vue-project\backend\index.js
+    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:880:15)
+    at Function.Module._load (internal/modules/cjs/loader.js:725:27)
+    at Module.require (internal/modules/cjs/loader.js:952:19)
+    at require (internal/modules/cjs/helpers.js:88:18)
+    at Object.<anonymous> (C:\git\vue-project\backend\index.js:5:17)
+    at Module._compile (internal/modules/cjs/loader.js:1063:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)
+    at Module.load (internal/modules/cjs/loader.js:928:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:769:14)
+    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)
+2021-01-26T01:34:20.025Z [winston-test] info: backend listening at http://localhost:3000
+2021-01-26T01:35:19.728Z [winston-test] info: backend listening at http://localhost:3000
+2021-01-26T01:35:41.159Z [winston-test] info: backend listening at http://localhost:3000
+2021-01-26T01:35:55.986Z [winston-test] info: backend listening at http://localhost:3000
+2021-01-26T01:41:00.296Z [winston-test] error: uncaughtException: morgan is not defined
+ReferenceError: morgan is not defined
+    at Object.<anonymous> (C:\git\vue-project\backend\index.js:6:5)
+    at Module._compile (internal/modules/cjs/loader.js:1063:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)
+    at Module.load (internal/modules/cjs/loader.js:928:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:769:14)
+    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)
+    at internal/main/run_main_module.js:17:47
+2021-01-26T01:41:28.838Z [winston-test] info: backend listening at http://localhost:3000
+2021-01-26T01:41:39.524Z [winston-test] info: ::1 - - [26/Jan/2021:01:41:39 +0000] "GET / HTTP/1.1" 200 343 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+
+2021-01-26T01:41:39.628Z [winston-test] info: ::1 - - [26/Jan/2021:01:41:39 +0000] "GET /favicon.ico HTTP/1.1" 404 150 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+

@@ -19,6 +19,9 @@
     "homepage": "https://github.com/yongminkim0313/vue-project#readme",
     "dependencies": {
         "express": "^4.17.1",
-        "mariadb": "^2.5.2"
+        "mariadb": "^2.5.2",
+        "morgan": "^1.10.0",
+        "mybatis-mapper": "^0.6.5",
+        "winston": "^3.3.3"
     }
 }

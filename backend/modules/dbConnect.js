@@ -1,4 +1,6 @@
 const mariadb = require('mariadb');
+const mapper = require('./mapperConfig');
+const winston = require('./winstonConfig');
 
 const pool = mariadb.createPool({
     host: '128.1.1.10',
@@ -7,6 +9,8 @@ const pool = mariadb.createPool({
     password: '1234',
     database: 'test'
 });
+
+var query = mapper.get('userMapper', 'selectUser', { "test_id": "111" });
 
 async function getList() {
     let conn, rows;
