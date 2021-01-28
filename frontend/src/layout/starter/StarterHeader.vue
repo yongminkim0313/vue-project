@@ -1,31 +1,77 @@
 <template>
-    <base-nav content-id= 'navbar-primary' type="primary" effect="dark" title="yongmin's project" expand>
-    <div class="row" slot="content-header" slot-scope="{closeMenu}">
+    <header class="header-global">
+        <base-nav class="navbar-main" transparent type="default" effect="light" expand>
+            <router-link slot="brand" class="navbar-brand mr-lg-5" to="/">
+                YongMin's Project
+            </router-link>
+
+            <div class="row" slot="content-header" slot-scope="{closeMenu}">
                 <div class="col-6 collapse-brand">
-                    <a href="/">
-                        yongmin's project
+                    <a href="https://demos.creative-tim.com/vue-argon-design-system/documentation/">
+                        YongMin's Project
                     </a>
                 </div>
                 <div class="col-6 collapse-close">
-                    <close-button @click="closeMenu" target="`navbar-primary`">
-close
-                    </close-button>
+                    <close-button @click="closeMenu"></close-button>
                 </div>
             </div>
 
-    </base-nav>
+            <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
+                <base-dropdown class="nav-item" menu-classes="dropdown-menu-xl">
+                    <a slot="title" href="#" class="nav-link" data-toggle="dropdown" role="button">
+                        <i class="ni ni-ui-04 d-lg-inline"></i>
+                        <span class="nav-link-inner--text">Components</span>
+                    </a>
+                    <div class="dropdown-menu-inner">
+                        <a href="https://demos.creative-tim.com/vue-argon-design-system/documentation/"
+                           class="media d-flex align-items-center">
+                            <div class="icon icon-shape bg-gradient-primary rounded-circle text-white">
+                                <i class="ni ni-spaceship"></i>
+                            </div>
+                            <div class="media-body ml-3">
+                                <h6 class="heading text-primary mb-md-1">Getting started</h6>
+                                <p class="description d-none d-md-inline-block mb-0">Get started with Bootstrap, the
+                                    world's most popular framework for building responsive sites.</p>
+                            </div>
+                        </a>
+                        <a href="https://demos.creative-tim.com/vue-argon-design-system/documentation/"
+                           class="media d-flex align-items-center">
+                            <div class="icon icon-shape bg-gradient-warning rounded-circle text-white">
+                                <i class="ni ni-ui-04"></i>
+                            </div>
+                            <div class="media-body ml-3">
+                                <h5 class="heading text-warning mb-md-1">Components</h5>
+                                <p class="description d-none d-md-inline-block mb-0">Learn how to use Argon
+                                    compiling Scss, change brand colors and more.</p>
+                            </div>
+                        </a>
+                    </div>
+                </base-dropdown>
+                <base-dropdown tag="li" class="nav-item">
+                    <a slot="title" href="#" class="nav-link" data-toggle="dropdown" role="button">
+                        <i class="ni ni-image d-lg-inline"></i>
+                        <span class="nav-link-inner--text">Examples</span>
+                    </a>
+                    <router-link to="/landing" class="dropdown-item">Landing</router-link>
+                    <router-link to="/profile" class="dropdown-item">Profile</router-link>
+                    <router-link to="/login" class="dropdown-item">Login</router-link>
+                    <router-link to="/register" class="dropdown-item">Register</router-link>
+                </base-dropdown>
+            </ul>
+            
+        </base-nav>
+    </header>
 </template>
 <script>
 import BaseNav from "@/components/BaseNav";
+import BaseDropdown from "@/components/BaseDropdown";
 import CloseButton from "@/components/CloseButton";
+
 export default {
   components: {
-    BaseNav,CloseButton
-  },
-  data() {
-    return {
-     
-    };
+    BaseNav,
+    CloseButton,
+    BaseDropdown
   }
 };
 </script>
