@@ -24,6 +24,16 @@
 import Inputs from './components/Inputs.vue';
 import flatPicker from "vue-flatpickr-component";
 import "flatpickr/dist/flatpickr.css";
+import io from "socket.io-client";
+const socket = io("http://localhost:4000/",{
+  path: "/msg/",
+});
+
+socket.on("some event", (arg) => {
+  console.log(arg); // world
+});
+
+socket.emit("some event", "world");
 export default {
   components: {
     Inputs,flatPicker
@@ -35,7 +45,18 @@ export default {
         range: "2018-07-17 to 2018-07-19"
       }
     };
-  }};
+  },
+  created() {
+    this.axios({
+        url: "/api/test"
+
+      }).then(result =>{
+        // console.log(result);
+      })
+  }
+   
+  
+  };
 </script>
 <style>
 </style>

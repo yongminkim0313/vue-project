@@ -18,10 +18,12 @@
     },
     "homepage": "https://github.com/yongminkim0313/vue-project#readme",
     "dependencies": {
+        "cors": "^2.8.5",
         "express": "^4.17.1",
         "mariadb": "^2.5.2",
         "morgan": "^1.10.0",
         "mybatis-mapper": "^0.6.5",
+        "socket.io": "^3.1.0",
         "winston": "^3.3.3"
     }
 }
