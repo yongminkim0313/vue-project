@@ -23,7 +23,11 @@ import Argon from "./plugins/argon-kit";
 import './registerServiceWorker'
 import Axios from "axios";
 import VueAxios from "vue-axios";
+import Chat from 'vue-beautiful-chat'
+import vmodal from 'vue-js-modal';
 
+Vue.use(vmodal, { dialog: true })
+Vue.use(Chat)
 
 Vue.config.productionTip = false;
 Vue.use(Argon);

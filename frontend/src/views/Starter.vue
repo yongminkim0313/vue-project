@@ -6,6 +6,15 @@
           <base-alert type="warning" icon="ni ni-bell-55" dismissible>
               <span slot="text"><strong>Warning!</strong> This is a warning alert—check it out!</span>
           </base-alert>
+          <base-alert type="warning" icon="ni ni-bell-55" dismissible>
+              <span slot="text"><strong>Warning!</strong> This is a warning alert—check it out!</span>
+          </base-alert>
+          <base-alert type="warning" icon="ni ni-bell-55" dismissible>
+              <span slot="text"><strong>Warning!</strong> This is a warning alert—check it out!</span>
+          </base-alert>
+          <base-alert type="warning" icon="ni ni-bell-55" dismissible>
+              <span slot="text"><strong>Warning!</strong> This is a warning alert—check it out!</span>
+          </base-alert>
           <base-input addon-left-icon="ni ni-calendar-grid-58">
             <flat-picker slot-scope="{focus, blur}"
                           @on-open="focus"
@@ -24,16 +33,7 @@
 import Inputs from './components/Inputs.vue';
 import flatPicker from "vue-flatpickr-component";
 import "flatpickr/dist/flatpickr.css";
-import io from "socket.io-client";
-const socket = io("http://localhost:4000/",{
-  path: "/msg/",
-});
 
-socket.on("some event", (arg) => {
-  console.log(arg); // world
-});
-
-socket.emit("some event", "world");
 export default {
   components: {
     Inputs,flatPicker

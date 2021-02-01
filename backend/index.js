@@ -21,7 +21,12 @@ server.listen(4000);
 io.on('connection', socket => {
     winston.info(`socket.io connected: ${options.path}` + socket.rooms.size);
     socket.join('room1');
-    io.to('room1').emit('some event', '입장하였습니다.');
+    io.to('room1').emit('some event', { type: 'emoji', author: `me`, id: 17, data: { emoji: `😋` } });
+    io.to('room1').emit('some event', { type: 'text', author: `me`, id: 18, data: { text: `Do you read me...`, meta: '✓✓ Read' } });
+    socket.on('some event', (msg) => {
+        console.log(msg);
+        io.to('room1').emit('some event', msg);
+    })
 });
 
 app.use(morgan('combined', { stream: winston.stream }));

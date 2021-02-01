@@ -10,20 +10,22 @@ import BaseSlider from "../components/BaseSlider";
 import BaseSwitch from "../components/BaseSwitch";
 import Card from "../components/Card";
 import Icon from "../components/Icon";
+import Messenger from "../components/Messenger";
 
 export default {
-  install(Vue) {
-    Vue.component(Badge.name, Badge);
-    Vue.component(BaseAlert.name, BaseAlert);
-    Vue.component(BaseButton.name, BaseButton);
-    Vue.component(BaseInput.name, BaseInput);
-    Vue.component(BaseCheckbox.name, BaseCheckbox);
-    Vue.component(BasePagination.name, BasePagination);
-    Vue.component(BaseProgress.name, BaseProgress);
-    Vue.component(BaseRadio.name, BaseRadio);
-    Vue.component(BaseSlider.name, BaseSlider);
-    Vue.component(BaseSwitch.name, BaseSwitch);
-    Vue.component(Card.name, Card);
-    Vue.component(Icon.name, Icon);
-  }
+    install(Vue) {
+        Vue.component(Badge.name, Badge);
+        Vue.component(BaseAlert.name, BaseAlert);
+        Vue.component(BaseButton.name, BaseButton);
+        Vue.component(BaseInput.name, BaseInput);
+        Vue.component(BaseCheckbox.name, BaseCheckbox);
+        Vue.component(BasePagination.name, BasePagination);
+        Vue.component(BaseProgress.name, BaseProgress);
+        Vue.component(BaseRadio.name, BaseRadio);
+        Vue.component(BaseSlider.name, BaseSlider);
+        Vue.component(BaseSwitch.name, BaseSwitch);
+        Vue.component(Card.name, Card);
+        Vue.component(Icon.name, Icon);
+        Vue.component(Messenger.name, Messenger);
+    }
 };

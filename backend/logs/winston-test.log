@@ -1673,3 +1673,168 @@ Error: listen EADDRINUSE: address already in use :::3000
 
 2021-01-29T04:41:02.773Z [winston-test] info: socket.io connected: /msg/1
 2021-01-29T04:44:19.547Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T00:39:54.986Z [winston-test] info: backend listening at http://localhost:3000
+2021-02-01T00:39:58.580Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T00:40:29.024Z [winston-test] info: ::1 - - [01/Feb/2021:00:40:29 +0000] "GET /api/test HTTP/1.1" 200 343 "http://localhost:8081/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+
+2021-02-01T00:40:29.077Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T00:40:33.533Z [winston-test] info: ::1 - - [01/Feb/2021:00:40:33 +0000] "GET /api/test HTTP/1.1" 304 - "http://localhost:8081/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+
+2021-02-01T00:40:33.649Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T00:41:52.102Z [winston-test] info: ::1 - - [01/Feb/2021:00:41:52 +0000] "GET /api/test HTTP/1.1" 304 - "http://localhost:8081/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+
+2021-02-01T00:42:06.725Z [winston-test] info: ::1 - - [01/Feb/2021:00:42:06 +0000] "GET /api/test HTTP/1.1" 304 - "http://localhost:8081/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+
+2021-02-01T00:42:38.104Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T01:01:19.537Z [winston-test] info: ::1 - - [01/Feb/2021:01:01:19 +0000] "GET /api/test HTTP/1.1" 304 - "http://localhost:8081/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+
+2021-02-01T01:01:19.603Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T01:03:32.200Z [winston-test] info: ::1 - - [01/Feb/2021:01:03:32 +0000] "GET /api/test HTTP/1.1" 304 - "http://localhost:8081/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+
+2021-02-01T01:03:32.317Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T01:03:45.778Z [winston-test] info: ::1 - - [01/Feb/2021:01:03:45 +0000] "GET /api/test HTTP/1.1" 304 - "http://localhost:8081/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+
+2021-02-01T01:03:45.872Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T01:04:22.855Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T01:11:00.977Z [winston-test] info: ::1 - - [01/Feb/2021:01:11:00 +0000] "GET /api/test HTTP/1.1" 304 - "http://localhost:8081/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+
+2021-02-01T01:11:00.987Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T01:11:07.667Z [winston-test] info: ::1 - - [01/Feb/2021:01:11:07 +0000] "GET /api/test HTTP/1.1" 304 - "http://localhost:8081/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+
+2021-02-01T01:11:07.672Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T01:13:21.192Z [winston-test] info: ::1 - - [01/Feb/2021:01:13:21 +0000] "GET /api/test HTTP/1.1" 304 - "http://localhost:8081/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+
+2021-02-01T01:13:21.199Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T01:24:24.434Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T01:24:32.107Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:30:35.190Z [winston-test] info: backend listening at http://localhost:3000
+2021-02-01T04:30:35.236Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:31:50.809Z [winston-test] info: backend listening at http://localhost:3000
+2021-02-01T04:31:51.260Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:33:02.169Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:34:38.820Z [winston-test] info: backend listening at http://localhost:3000
+2021-02-01T04:34:38.957Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:34:39.326Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:35:18.522Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:35:20.682Z [winston-test] info: ::1 - - [01/Feb/2021:04:35:20 +0000] "GET /api/test HTTP/1.1" 200 343 "http://localhost:8081/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+
+2021-02-01T04:35:20.730Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:35:33.720Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:35:42.324Z [winston-test] info: ::1 - - [01/Feb/2021:04:35:42 +0000] "GET /api/test HTTP/1.1" 304 - "http://localhost:8081/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+
+2021-02-01T04:35:42.393Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:37:31.747Z [winston-test] info: backend listening at http://localhost:3000
+2021-02-01T04:37:31.795Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:37:42.737Z [winston-test] info: backend listening at http://localhost:3000
+2021-02-01T04:37:43.400Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:38:56.678Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:40:07.651Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:40:51.319Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:41:01.570Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:42:06.048Z [winston-test] info: backend listening at http://localhost:3000
+2021-02-01T04:42:06.203Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:42:06.211Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:42:06.216Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:42:06.289Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:42:06.732Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:43:00.789Z [winston-test] info: backend listening at http://localhost:3000
+2021-02-01T04:43:00.931Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:43:00.986Z [winston-test] error: uncaughtException: io.from is not a function
+TypeError: io.from is not a function
+    at Namespace.<anonymous> (C:\git\vue-project\backend\index.js:29:8)
+    at Namespace.emit (events.js:315:20)
+    at C:\git\vue-project\backend\node_modules\socket.io\dist\namespace.js:135:27
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+2021-02-01T04:43:24.086Z [winston-test] info: backend listening at http://localhost:3000
+2021-02-01T04:43:24.167Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:43:24.176Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:43:24.275Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:43:24.524Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:43:24.562Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:43:51.100Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:45:45.069Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:46:00.647Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:46:30.452Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:46:44.693Z [winston-test] info: backend listening at http://localhost:3000
+2021-02-01T04:46:44.735Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:46:44.738Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:46:44.763Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:46:45.024Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:46:45.308Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:46:45.444Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:46:45.453Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:46:45.522Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:46:45.556Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:47:29.537Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:47:46.981Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:48:09.888Z [winston-test] info: ::1 - - [01/Feb/2021:04:48:09 +0000] "GET /api/test HTTP/1.1" 304 - "http://localhost:8081/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+
+2021-02-01T04:48:09.951Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:48:31.416Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:48:39.528Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:49:19.108Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:49:36.624Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:49:39.283Z [winston-test] info: ::1 - - [01/Feb/2021:04:49:39 +0000] "GET /api/test HTTP/1.1" 304 - "http://localhost:8081/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+
+2021-02-01T04:49:39.354Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:49:51.312Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:52:46.994Z [winston-test] info: ::1 - - [01/Feb/2021:04:52:46 +0000] "GET /api/test HTTP/1.1" 304 - "http://localhost:8081/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+
+2021-02-01T04:52:47.060Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:52:56.452Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:53:10.022Z [winston-test] info: ::1 - - [01/Feb/2021:04:53:10 +0000] "GET /api/test HTTP/1.1" 304 - "http://localhost:8081/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+
+2021-02-01T04:53:10.091Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:53:20.369Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:53:21.567Z [winston-test] info: ::1 - - [01/Feb/2021:04:53:21 +0000] "GET /api/test HTTP/1.1" 304 - "http://localhost:8081/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+
+2021-02-01T04:53:21.571Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:53:42.567Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:53:44.300Z [winston-test] info: ::1 - - [01/Feb/2021:04:53:44 +0000] "GET /api/test HTTP/1.1" 304 - "http://localhost:8081/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+
+2021-02-01T04:53:44.375Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:53:56.515Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:55:29.540Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:55:29.552Z [winston-test] info: ::1 - - [01/Feb/2021:04:55:29 +0000] "GET /api/test HTTP/1.1" 304 - "http://localhost:8081/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+
+2021-02-01T04:55:37.603Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:55:38.905Z [winston-test] info: ::1 - - [01/Feb/2021:04:55:38 +0000] "GET /api/test HTTP/1.1" 304 - "http://localhost:8081/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+
+2021-02-01T04:55:38.976Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:59:27.190Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T04:59:32.042Z [winston-test] info: ::1 - - [01/Feb/2021:04:59:32 +0000] "GET /api/test HTTP/1.1" 304 - "http://localhost:8081/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+
+2021-02-01T04:59:32.109Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T05:00:07.415Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T05:01:33.151Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T05:01:44.103Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T05:01:59.538Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T05:02:07.440Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T05:02:14.406Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T05:02:33.956Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T05:05:59.036Z [winston-test] info: ::1 - - [01/Feb/2021:05:05:59 +0000] "GET /api/test HTTP/1.1" 304 - "http://localhost:8081/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+
+2021-02-01T05:05:59.110Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T05:06:58.702Z [winston-test] info: ::1 - - [01/Feb/2021:05:06:58 +0000] "GET /api/test HTTP/1.1" 304 - "http://localhost:8081/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+
+2021-02-01T05:06:58.731Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T05:08:55.867Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T05:08:56.686Z [winston-test] info: ::1 - - [01/Feb/2021:05:08:56 +0000] "GET /api/test HTTP/1.1" 304 - "http://localhost:8081/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+
+2021-02-01T05:08:56.751Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T05:28:27.990Z [winston-test] info: ::1 - - [01/Feb/2021:05:28:27 +0000] "GET /api/test HTTP/1.1" 304 - "http://localhost:8081/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+
+2021-02-01T05:28:28.063Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T05:30:01.425Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T05:30:03.961Z [winston-test] info: ::1 - - [01/Feb/2021:05:30:03 +0000] "GET /api/test HTTP/1.1" 304 - "http://localhost:8081/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+
+2021-02-01T05:30:04.041Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T05:30:15.994Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T05:30:16.924Z [winston-test] info: ::1 - - [01/Feb/2021:05:30:16 +0000] "GET /api/test HTTP/1.1" 304 - "http://localhost:8081/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+
+2021-02-01T05:30:16.983Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T05:30:25.943Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T05:30:35.081Z [winston-test] info: ::1 - - [01/Feb/2021:05:30:35 +0000] "GET /api/test HTTP/1.1" 304 - "http://localhost:8081/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+
+2021-02-01T05:30:35.161Z [winston-test] info: socket.io connected: /msg/1
+2021-02-01T05:30:52.951Z [winston-test] info: socket.io connected: /msg/1
