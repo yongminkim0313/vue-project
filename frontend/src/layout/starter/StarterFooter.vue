@@ -1,6 +1,7 @@
 <template>
     <footer class="footer has-cards">
         <div class="container">
+        <messenger></messenger>
             <hr>
             <div class="row align-items-center justify-content-md-between">
                 <div class="col-md-6">
@@ -30,7 +31,11 @@
     </footer>
 </template>
 <script>
+import Messenger from '@/components/Messenger.vue';
 export default {
+  components: {
+    Messenger
+  },
   name: 'starter-footer',
   data() {
     return {

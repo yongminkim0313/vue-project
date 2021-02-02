@@ -58,7 +58,6 @@
                     <router-link to="/register" class="dropdown-item">Register</router-link>
                 </base-dropdown>
             </ul>
-            <messenger></messenger>
         </base-nav>
     </header>
 </template>
@@ -66,14 +65,12 @@
 import BaseNav from "@/components/BaseNav";
 import BaseDropdown from "@/components/BaseDropdown";
 import CloseButton from "@/components/CloseButton";
-import Messenger from '../../components/Messenger.vue';
 
 export default {
   components: {
     BaseNav,
     CloseButton,
     BaseDropdown,
-    Messenger
   }
 };
 </script>

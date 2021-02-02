@@ -56,7 +56,7 @@ import chatParticipants from './chatProfiles'
 import messageHistory from './messageHistory'
 import availableColors from './colors'
 import io from "socket.io-client";
-const socket = io("http://localhost:4000/",{
+const socket = io("128.1.1.5:4000/",{
   path: "/msg/",
 });
 
@@ -94,6 +94,9 @@ export default {
     this.setColor('blue');
     var _this = this;
     
+    socket.on('messenger', (message)=>{
+     this.messageList = [...this.messageList, Object.assign({}, message, {id: Math.random()})]
+    })
   },
   methods: {
     sendMessage(text) {
@@ -112,8 +115,7 @@ export default {
         text.length > 0 ? this.participants[this.participants.length - 1].id : ''
     },
     onMessageWasSent(message) {
-      console.log(message);
-      socket.emit("some event", "world");
+      socket.emit("messenger", Object.assign({}, message, {id: Math.random()}));
       this.messageList = [...this.messageList, Object.assign({}, message, {id: Math.random()})]
     },
     openChat() {
