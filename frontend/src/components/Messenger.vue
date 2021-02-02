@@ -1,4 +1,5 @@
 <template>
+    <div style="z-index:999;">
     <beautiful-chat
       :always-scroll-to-bottom="alwaysScrollToBottom"
       :close="closeChat"
@@ -22,7 +23,7 @@
       @onType="handleOnType"
       @edit="editMessage"
       @remove="removeMessage"
-    >
+     >
       <template v-slot:text-message-toolbox="scopedProps">
         <button
           v-if="!scopedProps.me && scopedProps.message.type === 'text'"
@@ -50,13 +51,14 @@
       </template>
       <template v-slot:system-message-body="{message}"> [System]: {{ message.text }} </template>
     </beautiful-chat>
+    </div>
 </template>
 <script>
 import chatParticipants from './chatProfiles'
 import messageHistory from './messageHistory'
 import availableColors from './colors'
 import io from "socket.io-client";
-const socket = io("128.1.1.5:4000/",{
+const socket = io("http://172.20.10.6:4000/",{
   path: "/msg/",
 });
 
@@ -95,7 +97,8 @@ export default {
     var _this = this;
     
     socket.on('messenger', (message)=>{
-     this.messageList = [...this.messageList, Object.assign({}, message, {id: Math.random()})]
+     _this.messageList = [...this.messageList, Object.assign({}, message, {id: Math.random()})];
+     _this.newMessagesCount = this.isChatOpen ? this.newMessagesCount : this.newMessagesCount + 1
     })
   },
   methods: {

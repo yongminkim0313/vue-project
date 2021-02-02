@@ -1,5 +1,6 @@
 <template>
     <header class="header-global">
+        <!-- <messenger/> -->
         <base-nav class="navbar-main" transparent type="default" effect="light" expand>
             <router-link slot="brand" class="navbar-brand mr-lg-5" to="/">
                 YongMin's Project
@@ -65,12 +66,13 @@
 import BaseNav from "@/components/BaseNav";
 import BaseDropdown from "@/components/BaseDropdown";
 import CloseButton from "@/components/CloseButton";
-
+import Messenger from '@/components/Messenger.vue';
 export default {
   components: {
     BaseNav,
     CloseButton,
     BaseDropdown,
+    Messenger
   }
 };
 </script>

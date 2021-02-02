@@ -1954,3 +1954,141 @@ TypeError: Cannot read property 'emit' of undefined
 2021-02-01T23:56:50.002Z [winston-test] info: ::1 - - [01/Feb/2021:23:56:50 +0000] "GET /api/test HTTP/1.1" 304 - "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
 
 2021-02-01T23:56:50.101Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T03:59:54.373Z [winston-test] info: backend listening at http://localhost:3000
+2021-02-02T04:01:29.586Z [winston-test] info: ::1 - - [02/Feb/2021:04:01:29 +0000] "GET /api/test HTTP/1.1" - - "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+
+2021-02-02T04:02:36.707Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T04:02:37.135Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T04:04:07.971Z [winston-test] info: backend listening at http://localhost:3000
+2021-02-02T04:04:08.401Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T04:04:08.645Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T04:04:18.399Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T04:04:20.363Z [winston-test] info: ::1 - - [02/Feb/2021:04:04:20 +0000] "GET /api/test HTTP/1.1" - - "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+
+2021-02-02T04:05:37.973Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T04:06:55.155Z [winston-test] info: backend listening at http://localhost:3000
+2021-02-02T04:06:56.388Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T04:06:56.399Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T04:07:02.763Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T04:07:04.709Z [winston-test] info: ::1 - - [02/Feb/2021:04:07:04 +0000] "GET /api/test HTTP/1.1" - - "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+
+2021-02-02T04:07:32.066Z [winston-test] info: backend listening at http://localhost:3000
+2021-02-02T04:07:32.404Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T04:07:45.713Z [winston-test] info: backend listening at http://localhost:3000
+2021-02-02T04:07:45.752Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T04:07:47.010Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T04:07:48.896Z [winston-test] info: ::1 - - [02/Feb/2021:04:07:48 +0000] "GET /api/test HTTP/1.1" - - "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+
+2021-02-02T04:07:52.772Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T04:10:15.948Z [winston-test] info: backend listening at http://localhost:3000
+2021-02-02T04:10:16.499Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T04:10:25.526Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T04:10:27.473Z [winston-test] info: ::1 - - [02/Feb/2021:04:10:27 +0000] "GET /api/test HTTP/1.1" - - "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+
+2021-02-02T04:10:41.055Z [winston-test] info: backend listening at http://localhost:3000
+2021-02-02T04:10:41.295Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T04:11:20.300Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T04:11:22.785Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T04:11:24.748Z [winston-test] info: ::1 - - [02/Feb/2021:04:11:24 +0000] "GET /api/test HTTP/1.1" - - "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+
+2021-02-02T04:11:33.562Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T04:11:37.250Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T04:11:53.425Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T04:12:12.541Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T04:44:13.133Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T04:48:51.473Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T04:48:53.316Z [winston-test] info: ::1 - - [02/Feb/2021:04:48:53 +0000] "GET /api/test HTTP/1.1" - - "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36"
+
+2021-02-02T04:49:28.201Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T05:09:24.748Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T05:10:05.149Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T05:12:41.559Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T05:13:02.336Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T05:17:36.172Z [winston-test] info: backend listening at http://localhost:3000
+2021-02-02T05:17:37.391Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T05:17:51.135Z [winston-test] info: backend listening at http://localhost:3000
+2021-02-02T05:17:51.397Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T05:18:13.134Z [winston-test] info: backend listening at http://localhost:3000
+2021-02-02T05:18:14.388Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T05:20:11.099Z [winston-test] info: backend listening at http://localhost:3000
+2021-02-02T05:20:12.395Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T05:22:09.260Z [winston-test] info: backend listening at http://localhost:3000
+2021-02-02T05:22:09.401Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T05:22:30.064Z [winston-test] info: backend listening at http://localhost:3000
+2021-02-02T05:22:30.412Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T05:22:51.956Z [winston-test] info: backend listening at http://localhost:3000
+2021-02-02T05:22:52.403Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T05:23:10.522Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T05:24:32.859Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T05:25:00.635Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T06:21:41.864Z [winston-test] info: backend listening at http://localhost:3000
+2021-02-02T06:22:30.290Z [winston-test] info: backend listening at http://localhost:3000
+2021-02-02T06:23:06.448Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T06:27:23.236Z [winston-test] info: backend listening at http://localhost:3000
+2021-02-02T06:27:23.617Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T06:28:38.324Z [winston-test] info: backend listening at http://localhost:3000
+2021-02-02T06:28:38.556Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T06:35:32.558Z [winston-test] error: uncaughtException: Cannot find module 'socket.io-file'
+Require stack:
+- C:\git\vue-project\backend\index.js
+Error: Cannot find module 'socket.io-file'
+Require stack:
+- C:\git\vue-project\backend\index.js
+    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:880:15)
+    at Function.Module._load (internal/modules/cjs/loader.js:725:27)
+    at Module.require (internal/modules/cjs/loader.js:952:19)
+    at require (internal/modules/cjs/helpers.js:88:18)
+    at Object.<anonymous> (C:\git\vue-project\backend\index.js:18:22)
+    at Module._compile (internal/modules/cjs/loader.js:1063:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)
+    at Module.load (internal/modules/cjs/loader.js:928:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:769:14)
+    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)
+2021-02-02T06:41:42.944Z [winston-test] info: backend listening at http://localhost:3000
+2021-02-02T06:48:06.098Z [winston-test] info: backend listening at http://localhost:3000
+2021-02-02T06:56:12.204Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T06:58:38.884Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:02:02.270Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:03:34.668Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:10:31.351Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:12:34.904Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:20:10.398Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:21:13.136Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:25:10.532Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:38:37.684Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:38:42.086Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:38:42.091Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:39:07.574Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:39:10.231Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:39:10.250Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:39:45.762Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:40:00.930Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:40:03.583Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:40:03.598Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:40:17.456Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:40:33.667Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:40:36.911Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:40:36.997Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:41:16.506Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:42:16.505Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:42:18.660Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:42:18.671Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:42:31.868Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:42:36.226Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:42:36.232Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:43:18.537Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:43:20.482Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:43:20.560Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:43:41.802Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:43:41.897Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:44:15.795Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:44:15.828Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:49:18.957Z [winston-test] info: backend listening at http://localhost:3000
+2021-02-02T07:49:23.300Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:49:23.309Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:49:29.014Z [winston-test] info: backend listening at http://localhost:3000
+2021-02-02T07:49:29.060Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:49:29.285Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:50:53.861Z [winston-test] info: backend listening at http://localhost:3000
+2021-02-02T07:50:54.486Z [winston-test] info: socket.io connected: /msg/
+2021-02-02T07:50:54.622Z [winston-test] info: socket.io connected: /msg/

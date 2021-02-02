@@ -1,5 +1,5 @@
 export default [
-    { type: 'text', author: `me`, id: 0, data: { text: `메신저 테스트입니다.` } },
+    //{ type: 'text', author: `me`, id: 0, data: { text: `메신저 테스트입니다.` } },
     /*
     { type: 'text', author: `mattmezza`, id: 1, data: { text: `What do you need salsa for?` } },
     { type: 'text', author: `me`, id: 2, data: { text: `Salsa is now the number one condiment in America.` } },
