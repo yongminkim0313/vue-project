@@ -1,6 +1,6 @@
 <template>
     <header class="header-global">
-        <!-- <messenger/> -->
+        <messenger/>
         <base-nav class="navbar-main" transparent type="default" effect="light" expand>
             <router-link slot="brand" class="navbar-brand mr-lg-5" to="/">
                 YongMin's Project

@@ -3,18 +3,9 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-5">
-          <base-alert type="warning" icon="ni ni-bell-55" dismissible>
+          <!-- <base-alert type="warning" icon="ni ni-bell-55" dismissible>
               <span slot="text"><strong>Warning!</strong> This is a warning alert—check it out!</span>
-          </base-alert>
-          <base-alert type="warning" icon="ni ni-bell-55" dismissible>
-              <span slot="text"><strong>Warning!</strong> This is a warning alert—check it out!</span>
-          </base-alert>
-          <base-alert type="warning" icon="ni ni-bell-55" dismissible>
-              <span slot="text"><strong>Warning!</strong> This is a warning alert—check it out!</span>
-          </base-alert>
-          <base-alert type="warning" icon="ni ni-bell-55" dismissible>
-              <span slot="text"><strong>Warning!</strong> This is a warning alert—check it out!</span>
-          </base-alert>
+          </base-alert> -->
           <base-input addon-left-icon="ni ni-calendar-grid-58">
             <flat-picker slot-scope="{focus, blur}"
                           @on-open="focus"
@@ -31,6 +22,7 @@
         <label for="NameBox">Name: </label><input type="text" id="NameBox" v-model="selectedFile.name"><br>
         <button type='button' id='UploadButton' class='Button' @click="startUpload">Upload</button>
         <div v-html="html"></div>
+        <base-progress :value="progress" label="zzz"></base-progress>
         </span>
         </div>
         </div>
@@ -43,9 +35,12 @@ import Inputs from './components/Inputs.vue';
 import flatPicker from "vue-flatpickr-component";
 import "flatpickr/dist/flatpickr.css";
 import io from "socket.io-client";
-const socket = io("http://172.20.10.6:4000/",{
+const socket = io("http://128.1.1.5:4000/",{
   path: "/msg/",
 });
+var fileReader;
+fileReader = new FileReader();
+
 
 export default {
   components: {
@@ -59,6 +54,7 @@ export default {
       }
       ,selectedFile :""
       , html : ""
+      ,progress: 0
     };
   },
   created() {
@@ -68,26 +64,50 @@ export default {
     //   }).then(result =>{
     //     // console.log(result);
     //   })
+
+     socket.on('MoreData', (data) => {
+        console.log('MoreData: ', data);
+        this.progress = data.Percent;
+        var Place = data.Place * 524288;
+        var NewFile = '';
+        if (this.selectedFile.webkitSlice)
+            NewFile = this.selectedFile.webkitSlice(Place, Place + Math.min(524288, (this.selectedFile.size - Place)));
+        else
+            NewFile = this.selectedFile.slice(Place, Place + Math.min(524288, (this.selectedFile.size - Place)));
+        
+        console.log('첫:', Place, '끝:', Place + Math.min(524288, (this.selectedFile.size - Place)));
+        fileReader.readAsBinaryString(NewFile);
+    });
+    socket.on('endData', (data) => {
+      this.progress = data.Percent;
+    });
   },
   methods : {
     startUpload() {
-      var fileReader;
+      
       var _this = this;
       if(_this.$refs.FileBox != "") {
-        fileReader = new FileReader();
+        
         var content = "<span id='NameArea'>Uploading " + _this.selectedFile.name + "</span>";
         content += "<span id='Uploaded'> - <span id='MB'>0</span>/" + Math.round(_this.selectedFile.size / 1048576) + "MB</span>";
         _this.html = content;
-
+        console.log('startUpload11111');
+        
+        
         fileReader.onload = function(event){
+          console.log('startUpload2222');
           var data
           if(!event){
             data = fileReader.content;
           }else{
             data = event.target.result;
           }
+          console.log('startUpload3333');
           socket.emit('Upload', { 'Name' : _this.selectedFile.name, Data : data });
         }
+
+
+        console.log('startUpload4444')
         socket.emit('Start', { 'Name' : _this.selectedFile.name, 'Size' : _this.selectedFile.size });
       }else{
         alert("Please Select A File");

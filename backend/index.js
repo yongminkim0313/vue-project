@@ -7,6 +7,9 @@ const morgan = require('morgan');
 const cors = require('cors');
 const fs = require('fs');
 
+const temp = "./temp/";
+const video = "./video/";
+
 const options = {
     maxHttpBufferSize: 1e8,
     path: '/msg/',
@@ -28,6 +31,7 @@ io.on('connection', socket => {
     })
 
 
+    var Files = Object();
     socket.on('Start', (data) => {
         console.log('socket start!!');
         console.log(data);
@@ -38,12 +42,14 @@ io.on('connection', socket => {
             Downloaded: 0
         };
         var Place = 0;
-        var Stat = fs.statSync('Temp/' + Name);
+        fs.appendFileSync(temp + Name, "");
+        var Stat = fs.statSync(temp + Name);
         if (Stat.isFile()) {
             Files[Name].Downloaded = Stat.size;
             Place = Stat.size / 524288;
+            console.log('Stat.size:', Stat.size);
         }
-        fs.open("Temp/" + Name, "a+", function(err, fd) {
+        fs.open(temp + Name, "a+", function(err, fd) {
             if (err) console.log(err);
             else {
                 Files[Name].Handler = fd;
@@ -52,23 +58,45 @@ io.on('connection', socket => {
         });
     });
 
-
-    socket.on('MoreData', function(data) {
-        UpdateBar(data.Percent);
-        var Place = data.Place * 524288;
-        var NewFile = '';
-        if (SelectedFile.webkitSlice)
-            NewFile = SelectedFile.webkitSlice(Place, Place + Math.min(524288, (SelectedFile.size - Place)));
-        else
-            NewFile = SelectedFile.slice(Place, Place + Math.min(524288, (SelectedFile.size - Place)));
-        fileReader.readAsBinaryString(NewFile);
+    socket.on('Upload', (data) => {
+        console.log('socket upload!!');
+        var Name = data.Name;
+        Files[Name].Downloaded += data.Data.length;
+        Files[Name].Data += data.Data;
+        if (Files[Name].Downloaded == Files[Name].FileSize) {
+            fs.write(Files[Name].Handler, Files[Name].Data, null, 'Binary', function(err, written) {
+                if (err) console.error(err);
+                //Generate movie thumbnail
+                var readable = fs.createReadStream(temp + Name);
+                var writable = fs.createWriteStream(video + Name);
+                readable.pipe(writable);
+                writable.on('finish', function(err) {
+                    if (err) console.error(err);
+                    console.log(Name + " : writing is completed.");
+                    fs.close(Files[Name].Handler, function(err) { //close fs module
+                        if (err) console.error(err, Files);
+                        fs.unlink(temp + Name, function(err) {
+                            //Moving File is Completed
+                            if (err) console.error(err);
+                            socket.emit('endData', { 'Place': Place, 'Percent': 100 });
+                            console.log(Name + " is deleted.");
+                        });
+                    });
+                });
+            });
+        } else if (Files[Name].Data.length > 10485760) {
+            fs.write(Files[Name].Handler, Files[Name].Data, null, 'Binary', function(err, written) {
+                Files[Name].Data = ""; //Reset The Buffer
+                var Place = Files[Name].Downloaded / 524288;
+                var Percent = (Files[Name].Downloaded / Files[Name].FileSize) * 100;
+                socket.emit('MoreData', { 'Place': Place, 'Percent': Percent });
+            });
+        } else {
+            var Place = Files[Name].Downloaded / 524288;
+            var Percent = (Files[Name].Downloaded / Files[Name].FileSize) * 100;
+            socket.emit('MoreData', { 'Place': Place, 'Percent': Percent });
+        }
     });
-
-    function UpdateBar(percent) {
-        document.getElementById('percent').innerHTML = (Math.round(percent * 100) / 100) + '%';
-        var MBDone = Math.round(((percent / 100.0) * SelectedFile.size) / 1048576);
-        document.getElementById('MB').innerHTML = MBDone;
-    }
 });
 
 app.use(morgan('combined', { stream: winston.stream }));
@@ -79,6 +107,14 @@ app.get('/api/test', (req, res) => {
     db.getList()
         .then(rows => { res.json(rows) })
         .catch(err => { console.log(err) })
+});
+
+app.get('/api/download', (req, res) => {
+    console.log('download!!!!')
+    res.setHeader("Content-Disposition", "attachment;filename=" + encodeURI("마루Z_small.avi.mp4"));
+    res.setHeader("Content-Type", "binary/octet-stream");
+    var fileStream = fs.createReadStream('./video/마루Z_small.avi.mp4');
+    fileStream.pipe(res);
 });
 
 app.listen(port, () => {

@@ -6,7 +6,7 @@
         <!-- <custom-controls></custom-controls> -->
         <navigation></navigation>
         <javascript-components></javascript-components>
-        <!-- <icons></icons> -->
+        <icons></icons>
         <!-- <examples></examples> -->
         <!-- <download-section></download-section> -->
         <!-- <carousel></carousel> -->

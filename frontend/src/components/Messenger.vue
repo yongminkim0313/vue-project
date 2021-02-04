@@ -58,7 +58,7 @@ import chatParticipants from './chatProfiles'
 import messageHistory from './messageHistory'
 import availableColors from './colors'
 import io from "socket.io-client";
-const socket = io("http://172.20.10.6:4000/",{
+const socket = io("http://128.1.1.5:4000/",{
   path: "/msg/",
 });
 
