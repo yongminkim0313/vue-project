@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="tbBbs">
+    <select id="insertAtchmnfl">
+    INSERT INTO T_CM_ATCHMNFL VALUES(
+        1
+        ,'TEST FILE'
+        ,'TEST ORIGINAL FILE NM'
+        , 10000
+        , 'TEST/TEST/TEST'
+        , 'JPGE'
+        , 1
+        , NOW()
+        , 1
+        , NOW()
+    )
+    </select>
+</mapper>

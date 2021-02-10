@@ -8,7 +8,7 @@ const cors = require('cors');
 const fs = require('fs');
 
 const temp = "./temp/";
-const video = "./video/";
+const uploadFile = "./uploadFile/";
 
 const options = {
     maxHttpBufferSize: 1e8,
@@ -68,7 +68,7 @@ io.on('connection', socket => {
                 if (err) console.error(err);
                 //Generate movie thumbnail
                 var readable = fs.createReadStream(temp + Name);
-                var writable = fs.createWriteStream(video + Name);
+                var writable = fs.createWriteStream(uploadFile + Name);
                 readable.pipe(writable);
                 writable.on('finish', function(err) {
                     if (err) console.error(err);
