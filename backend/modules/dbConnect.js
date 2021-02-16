@@ -17,7 +17,7 @@ async function getList() {
     let conn, rows;
     try {
         conn = await pool.getConnection();
-        conn.query('use test');
+        //conn.query('use test');
         rows = await conn.query('select * from TB_BBS');
     } catch (err) {
         console.log(err);
@@ -27,4 +27,21 @@ async function getList() {
     }
 }
 
-module.exports = { getList }
+async function setData(mapperId, sqlId, param) {
+    let conn, rows;
+    try {
+        conn = await pool.getConnection();
+        var exeQuery = mapper.get(mapperId, sqlId, param);
+        rows = await conn.query(exeQuery);
+    } catch (err) {
+        console.log(err);
+    } finally {
+        if (conn) conn.end();
+        return rows;
+    }
+}
+
+module.exports = {
+    getList: getList,
+    setData: setData
+}

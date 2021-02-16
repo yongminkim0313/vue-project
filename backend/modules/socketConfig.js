@@ -1,4 +1,4 @@
-module.exports = (io, fs, winston) => {
+module.exports = (io, fs, db, winston) => {
     const temp = "./temp/";
     const uploadFile = "./uploadFile/";
 
@@ -57,6 +57,7 @@ module.exports = (io, fs, winston) => {
                                 if (err) console.error(err);
                                 socket.emit('endData', { 'Place': Place, 'Percent': 100 });
                                 winston.info(Name + " is deleted.");
+                                db.setData('commonMapper', 'insertAtchmnfl', { "id": "2" });
                             });
                         });
                     });

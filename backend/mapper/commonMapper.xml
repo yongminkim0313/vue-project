@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mapper namespace="tbBbs">
+<mapper namespace="commonMapper">
     <select id="insertAtchmnfl">
     INSERT INTO T_CM_ATCHMNFL VALUES(
-        1
+        #{id}
         ,'TEST FILE'
         ,'TEST ORIGINAL FILE NM'
         , 10000

@@ -18,7 +18,7 @@ const server = require('http').createServer(app);
 const io = require('socket.io')(server, options);
 
 server.listen(4000);
-const upload = require('./modules/socketConfig')(io, fs, winston);
+const upload = require('./modules/socketConfig')(io, fs, db, winston);
 
 app.use(morgan('combined', { stream: winston.stream }));
 
