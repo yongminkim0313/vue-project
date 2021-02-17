@@ -20,7 +20,8 @@
         <span id='UploadArea'>
         <label for="FileBox">Choose A File: </label><input type="file" id="FileBox" ref="FileBox" @change="fileChosen"><br>
         <label for="NameBox">Name: </label><input type="text" id="NameBox" v-model="selectedFile.name"><br>
-        <button type='button' id='UploadButton' class='Button' @click="startUpload">Upload</button>
+        <button type='button' class='Button' @click="startUpload">Upload</button>
+        <a href="http://localhost:3000/api/download" role="button">download</a>
         <div v-html="html"></div>
         <base-progress :value="progress" label="zzz"></base-progress>
         </span>

@@ -32,10 +32,18 @@ app.get('/api/test', (req, res) => {
 
 app.get('/api/download', (req, res) => {
     console.log('download!!!!')
-    res.setHeader("Content-Disposition", "attachment;filename=" + encodeURI("마루Z_small.avi.mp4"));
-    res.setHeader("Content-Type", "binary/octet-stream");
-    var fileStream = fs.createReadStream('./video/마루Z_small.avi.mp4');
-    fileStream.pipe(res);
+    db.getData('commonMapper', 'selectAtchmnfl', { "atchmnflId": "12" })
+        .then(row => {
+            console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+            console.log(row);
+            console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+            res.setHeader("Content-Disposition", "attachment;filename=" + encodeURI(row.ATCHMNFL_ORIGIN_FILE_NM));
+            res.setHeader("Content-Type", "binary/octet-stream");
+            console.log("row.ATCHMNFL_PATH", row.ATCHMNFL_PATH)
+            var fileStream = fs.createReadStream(row.ATCHMNFL_PATH);
+            fileStream.pipe(res);
+        })
+        .catch(err => { console.log(err) });
 });
 
 app.listen(port, () => {

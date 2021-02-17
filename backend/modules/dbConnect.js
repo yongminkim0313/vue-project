@@ -41,7 +41,24 @@ async function setData(mapperId, sqlId, param) {
     }
 }
 
+
+async function getData(mapperId, sqlId, param) {
+    let conn, rows;
+    try {
+        conn = await pool.getConnection();
+        var exeQuery = mapper.get(mapperId, sqlId, param);
+        console.log(exeQuery);
+        rows = await conn.query(exeQuery);
+    } catch (err) {
+        console.log(err);
+    } finally {
+        if (conn) conn.end();
+        return rows[0];
+    }
+}
+
 module.exports = {
     getList: getList,
-    setData: setData
+    setData: setData,
+    getData: getData
 }

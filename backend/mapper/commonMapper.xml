@@ -1,17 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mapper namespace="commonMapper">
-    <select id="insertAtchmnfl">
-    INSERT INTO T_CM_ATCHMNFL VALUES(
-        #{id}
-        ,'TEST FILE'
-        ,'TEST ORIGINAL FILE NM'
-        , 10000
-        , 'TEST/TEST/TEST'
-        , 'JPGE'
-        , 1
-        , NOW()
-        , 1
+    <insert id="insertAtchmnfl">
+    INSERT INTO T_CM_ATCHMNFL(
+        ATCHMNFL_NM
+        , ATCHMNFL_ORIGIN_FILE_NM
+        , ATCHMNFL_SIZE
+        , ATCHMNFL_PATH
+        , ATCHMNFL_EXTSN_NM
+        , RGSTER_ID
+        , RGST_DT
+    ) VALUES(
+         #{atchmnflNm}
+        , #{atchmnflOriginFileNm}
+        , #{atchmnflSize}
+        , #{atchmnflPath}
+        , #{atchmnflExtsnNm}
+        , #{rgsterId}
         , NOW()
     )
+    </insert>
+    <select id="selectAtchmnfl">
+        SELECT 
+            ATCHMNFL_ID
+            , ATCHMNFL_NM
+            , ATCHMNFL_ORIGIN_FILE_NM
+            , ATCHMNFL_SIZE
+            , ATCHMNFL_PATH
+            , ATCHMNFL_EXTSN_NM
+            , RGSTER_ID
+            , RGST_DT
+        FROM T_CM_ATCHMNFL
+        WHERE ATCHMNFL_ID = #{atchmnflId}
     </select>
 </mapper>
