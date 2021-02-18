@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session')
 const app = express();
 const port = 3000
 const db = require('./modules/dbConnect');
@@ -30,13 +31,14 @@ app.get('/api/test', (req, res) => {
         .catch(err => { console.log(err) })
 });
 
+console.log(process.env.SESSION_SECRET);
+
+
 app.get('/api/download', (req, res) => {
     console.log('download!!!!')
     db.getData('commonMapper', 'selectAtchmnfl', { "atchmnflId": "12" })
         .then(row => {
-            console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
             console.log(row);
-            console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
             res.setHeader("Content-Disposition", "attachment;filename=" + encodeURI(row.ATCHMNFL_ORIGIN_FILE_NM));
             res.setHeader("Content-Type", "binary/octet-stream");
             console.log("row.ATCHMNFL_PATH", row.ATCHMNFL_PATH)

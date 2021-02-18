@@ -21,7 +21,7 @@
         <label for="FileBox">Choose A File: </label><input type="file" id="FileBox" ref="FileBox" @change="fileChosen"><br>
         <label for="NameBox">Name: </label><input type="text" id="NameBox" v-model="selectedFile.name"><br>
         <button type='button' class='Button' @click="startUpload">Upload</button>
-        <a href="http://localhost:3000/api/download" role="button">download</a>
+        <a href="#" role="button" @click="download()">download</a>
         <div v-html="html"></div>
         <base-progress :value="progress" label="zzz"></base-progress>
         </span>
@@ -36,12 +36,12 @@ import Inputs from './components/Inputs.vue';
 import flatPicker from "vue-flatpickr-component";
 import "flatpickr/dist/flatpickr.css";
 import io from "socket.io-client";
-const socket = io("http://128.1.1.5:4000/",{
+
+const socket = io(process.env.VUE_APP_SOCKET_URL,{
   path: "/msg/",
 });
 var fileReader;
 fileReader = new FileReader();
-
 
 export default {
   components: {
@@ -117,6 +117,9 @@ export default {
     fileChosen(event) {
       this.selectedFile = event.target.files[0];
       console.log(this.selectedFile.name);
+    },
+    download(){
+      console.log(process.env.VUE_APP_API_URL+"/api/download");
     }
   }
    
