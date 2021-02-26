@@ -34,7 +34,7 @@ async function setData(mapperId, sqlId, param) {
         var exeQuery = mapper.get(mapperId, sqlId, param);
         rows = await conn.query(exeQuery);
     } catch (err) {
-        console.log(err);
+        throw Error("setData Error");
     } finally {
         if (conn) conn.end();
         return rows;
@@ -50,7 +50,7 @@ async function getData(mapperId, sqlId, param) {
         console.log(exeQuery);
         rows = await conn.query(exeQuery);
     } catch (err) {
-        console.log(err);
+        throw Error("getData Error");
     } finally {
         if (conn) conn.end();
         return rows[0];

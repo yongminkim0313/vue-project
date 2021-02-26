@@ -25,6 +25,12 @@ import Axios from "axios";
 import VueAxios from "vue-axios";
 import Chat from 'vue-beautiful-chat'
 import vmodal from 'vue-js-modal';
+import io from "socket.io-client";
+
+const socket = io(process.env.VUE_APP_SOCKET_URL, {
+    path: "/msg/",
+});
+Vue.prototype.$socket = socket;
 
 Vue.use(vmodal, { dialog: true })
 Vue.use(Chat)

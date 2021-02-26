@@ -1,15 +1,15 @@
 <template>
     <div>
-        <!-- <hero></hero> -->
-        <!-- <basic-elements></basic-elements> -->
-        <!-- <inputs></inputs> -->
-        <!-- <custom-controls></custom-controls> -->
+        <hero></hero>
+        <basic-elements></basic-elements>
+        <inputs></inputs>
+        <custom-controls></custom-controls>
         <navigation></navigation>
         <javascript-components></javascript-components>
         <icons></icons>
-        <!-- <examples></examples> -->
-        <!-- <download-section></download-section> -->
-        <!-- <carousel></carousel> -->
+        <examples></examples>
+        <download-section></download-section>
+        <carousel></carousel>
     </div>
 </template>
 <script>

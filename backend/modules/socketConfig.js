@@ -42,26 +42,24 @@ module.exports = (io, fs, db, winston) => {
         });
 
         socket.on('Upload', (data) => {
-            //winston.info('socket upload!!');
             var Name = data.Name;
             Files[Name].Downloaded += data.Data.length;
             Files[Name].Data += data.Data;
             if (Files[Name].Downloaded == Files[Name].FileSize) {
                 var atchmnflNm = uuidv4();
                 fs.write(Files[Name].Handler, Files[Name].Data, null, 'Binary', function(err, written) {
-                    if (err) console.error(err);
-                    //Generate movie thumbnail
+
+                    if (err) winston.error(err);
                     var readable = fs.createReadStream(temp + Name);
                     var writable = fs.createWriteStream(uploadFile + atchmnflNm);
                     readable.pipe(writable);
                     writable.on('finish', function(err) {
-                        if (err) console.error(err);
+                        if (err) winston.error(err);
                         winston.info(atchmnflNm + " : writing is completed.");
-                        fs.close(Files[Name].Handler, function(err) { //close fs module
-                            if (err) console.error(err, Files);
+                        fs.close(Files[Name].Handler, function(err) {
+                            if (err) winston.error(err, Files);
                             fs.unlink(temp + Name, function(err) {
-                                //Moving File is Completed
-                                if (err) console.error(err);
+                                if (err) winston.error(err);
                                 socket.emit('endData', { 'Place': Place, 'Percent': 100 });
                                 winston.info(Name + " is deleted.");
                                 var dbData = {
@@ -72,8 +70,7 @@ module.exports = (io, fs, db, winston) => {
                                     "atchmnflExtsnNm": Name.substr(Name.lastIndexOf(".") + 1),
                                     "rgsterId": '1'
                                 }
-
-                                db.setData('commonMapper', 'insertAtchmnfl', dbData);
+                                db.setData('commonMapper', 'insertAtchmnfl', dbData)
                             });
                         });
                     });

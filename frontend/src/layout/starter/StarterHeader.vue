@@ -1,7 +1,7 @@
 <template>
     <header class="header-global">
-        <messenger/>
         <base-nav class="navbar-main" transparent type="default" effect="light" expand>
+        <messenger style="z-index: 999;"/>
             <router-link slot="brand" class="navbar-brand mr-lg-5" to="/">
                 YongMin's Project
             </router-link>
@@ -57,6 +57,7 @@
                     <router-link to="/profile" class="dropdown-item">Profile</router-link>
                     <router-link to="/login" class="dropdown-item">Login</router-link>
                     <router-link to="/register" class="dropdown-item">Register</router-link>
+                    <router-link to="/customComponents" class="dropdown-item">CustomComponents</router-link>
                 </base-dropdown>
             </ul>
         </base-nav>

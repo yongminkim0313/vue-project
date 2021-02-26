@@ -1,5 +1,4 @@
 <template>
-    <div style="z-index:999;">
     <beautiful-chat
       :always-scroll-to-bottom="alwaysScrollToBottom"
       :close="closeChat"
@@ -51,16 +50,11 @@
       </template>
       <template v-slot:system-message-body="{message}"> [System]: {{ message.text }} </template>
     </beautiful-chat>
-    </div>
 </template>
 <script>
 import chatParticipants from './chatProfiles'
 import messageHistory from './messageHistory'
 import availableColors from './colors'
-import io from "socket.io-client";
-const socket = io("http://128.1.1.5:4000/",{
-  path: "/msg/",
-});
 
 export default {
   name: 'messenger',
@@ -96,7 +90,7 @@ export default {
     this.setColor('blue');
     var _this = this;
     
-    socket.on('messenger', (message)=>{
+    this.$socket.on('messenger', (message)=>{
      _this.messageList = [...this.messageList, Object.assign({}, message, {id: Math.random()})];
      _this.newMessagesCount = this.isChatOpen ? this.newMessagesCount : this.newMessagesCount + 1
     })
@@ -118,7 +112,7 @@ export default {
         text.length > 0 ? this.participants[this.participants.length - 1].id : ''
     },
     onMessageWasSent(message) {
-      socket.emit("messenger", Object.assign({}, message, {id: Math.random()}));
+      this.$socket.emit("messenger", Object.assign({}, message, {id: Math.random()}));
       this.messageList = [...this.messageList, Object.assign({}, message, {id: Math.random()})]
     },
     openChat() {

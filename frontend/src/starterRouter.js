@@ -6,7 +6,8 @@ import Register from "./views/Register.vue";
 import Profile from "./views/Profile.vue";
 import AppHeader from "./layout/starter/StarterHeader";
 import AppFooter from "./layout/starter/StarterFooter";
-import Components from "./views/Starter.vue";
+import Starter from "./views/Starter.vue";
+import CustomComponents from "./views/CustomComponents.vue";
 
 Vue.use(Router);
 
@@ -17,7 +18,7 @@ export default new Router({
             name: "components",
             components: {
                 header: AppHeader,
-                default: Components,
+                default: Starter,
                 footer: AppFooter
             }
         },
@@ -54,6 +55,15 @@ export default new Router({
             components: {
                 header: AppHeader,
                 default: Profile,
+                footer: AppFooter
+            }
+        },
+        {
+            path: "/CustomComponents",
+            name: "customComponents",
+            components: {
+                header: AppHeader,
+                default: CustomComponents,
                 footer: AppFooter
             }
         }

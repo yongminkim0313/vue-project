@@ -25,11 +25,11 @@ app.use(morgan('combined', { stream: winston.stream }));
 
 app.use(cors());
 
-app.get('/api/test', (req, res) => {
-    db.getList()
-        .then(rows => { res.json(rows) })
-        .catch(err => { console.log(err) })
-});
+// app.get('/api/test', (req, res) => {
+//     db.getList()
+//         .then(rows => { res.json(rows) })
+//         .catch(err => { console.log(err) })
+// });
 
 console.log(process.env.SESSION_SECRET);
 
