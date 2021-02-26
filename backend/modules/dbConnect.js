@@ -3,13 +3,19 @@ const mapper = require('./mapperConfig');
 const winston = require('./winstonConfig');
 
 const pool = mariadb.createPool({
-    host: '128.1.1.10',
-    port: '3306',
-    user: 'root',
-    password: '1234',
-    database: 'test'
+    host: process.env.HOST,
+    port: process.env.PORT,
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE
 });
-
+console.log("mariadb", {
+    host: process.env.HOST,
+    port: process.env.PORT,
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE
+});
 var query = mapper.get('userMapper', 'selectUser', { "test_id": "111" });
 
 

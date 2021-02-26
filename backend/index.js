@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require('express');
 const session = require('express-session')
 const app = express();
@@ -31,9 +32,6 @@ app.use(cors());
 //         .catch(err => { console.log(err) })
 // });
 
-console.log(process.env.SESSION_SECRET);
-
-
 app.get('/api/download', (req, res) => {
     console.log('download!!!!')
     db.getData('commonMapper', 'selectAtchmnfl', { "atchmnflId": "12" })
@@ -47,6 +45,9 @@ app.get('/api/download', (req, res) => {
         })
         .catch(err => { console.log(err) });
 });
+
+db.getData('userMapper', 'selectUser', {})
+    .then(rows => console.log(rows));
 
 app.listen(port, () => {
     winston.info(`backend listening at http://localhost:${port}`);
