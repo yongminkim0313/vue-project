@@ -1,19 +1,30 @@
 <template>
-  <h2> 시작 페이지 </h2>
+    <section class="section section-shaped section-lg my-0">
+    <div class="container">
+        <div class="row">
+          <file-upload></file-upload>
+        </div>
+        </div>
+        </div>
+    </div>
+    </section>
 </template>
 <script>
 
 export default {
-    components: {
-    },
-    data() {
-      return {
-      };
-    },
-    created() {
-    },
-    methods : {
-    }
+  components: {
+  },
+  data() {
+    return {
+    };
+  },
+  created() {
+   
+  },
+  methods : {
+  }
+   
+  
   };
 </script>
 <style>

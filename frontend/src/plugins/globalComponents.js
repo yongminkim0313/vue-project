@@ -11,6 +11,7 @@ import BaseSwitch from "../components/BaseSwitch";
 import Card from "../components/Card";
 import Icon from "../components/Icon";
 import Messenger from "../components/Messenger";
+import FileUpload from "../components/FileUpload";
 
 export default {
     install(Vue) {
@@ -27,5 +28,6 @@ export default {
         Vue.component(Card.name, Card);
         Vue.component(Icon.name, Icon);
         Vue.component(Messenger.name, Messenger);
+        Vue.component(FileUpload.name, FileUpload);
     }
 };

@@ -24,7 +24,7 @@ const upload = require('./modules/socketConfig')(io, fs, db, winston);
 
 app.use(morgan('combined', { stream: winston.stream }));
 
-app.use(cors());
+//app.use(cors());
 
 // app.get('/api/test', (req, res) => {
 //     db.getList()

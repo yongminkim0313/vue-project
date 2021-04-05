@@ -23,7 +23,6 @@
         "vue-lazyload": "^1.2.6",
         "vue-router": "^3.0.2",
         "vue-template-compiler": "^2.6.6",
-        "vue-websocket": "^0.2.3",
         "vue2-transitions": "^0.2.3",
         "yarn": "^1.22.10"
     },
