@@ -17,16 +17,11 @@ export default {
   name: "file-upload",
   inheritAttrs: false,
   props: {
-    value: {
-      type: Boolean,
-      default: false,
-    },
   },
   components: {BaseButton},
   data() {
     return {
       selectedFile: "",
-      html: "",
       progress: 0,
     };
   },
@@ -57,16 +52,6 @@ export default {
     startUpload() {
       var _this = this;
       if (_this.$refs.FileBox != "") {
-        var content =
-          "<span id='NameArea'>Uploading " +
-          _this.selectedFile.name +
-          "</span>";
-        content +=
-          "<span id='Uploaded'> - <span id='MB'>0</span>/" +
-          Math.round(_this.selectedFile.size / 1048576) +
-          "MB</span>";
-        _this.html = content;
-
         fileReader.onload = function (event) {
           var data;
           if (!event) {

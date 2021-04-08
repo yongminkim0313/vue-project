@@ -4,9 +4,8 @@
         <div class="row">
           <file-upload></file-upload>
         </div>
+        <br/>
         </div>
-        </div>
-    </div>
     </section>
 </template>
 <script>
@@ -29,6 +28,7 @@ export default {
 </script>
 <style>
 </style>
+
 
 
 
