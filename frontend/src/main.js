@@ -26,6 +26,7 @@ import VueAxios from "vue-axios";
 import Chat from 'vue-beautiful-chat'
 import vmodal from 'vue-js-modal';
 import io from "socket.io-client";
+import vuetify from './plugins/vuetify';
 
 const socket = io(process.env.VUE_APP_SOCKET_URL, {
     path: "/msg/",
@@ -44,5 +45,6 @@ Axios.defaults.timeout = 2000;
 
 new Vue({
     router,
+    vuetify,
     render: h => h(App)
 }).$mount("#app");

@@ -17,18 +17,13 @@
 */
 
 // Core
-
 @import "bootstrap/functions";
 @import "custom/functions";
-
 @import "custom/variables";
 @import "bootstrap/variables";
-
 @import "bootstrap/mixins";
 @import "custom/mixins";
-
 // Bootstrap components
-
 @import "bootstrap/root";
 @import "bootstrap/reboot";
 @import "bootstrap/type";
@@ -61,13 +56,18 @@
 @import "bootstrap/carousel";
 @import "bootstrap/utilities";
 @import "bootstrap/print";
-
 // Custom components
-
 @import "custom/reboot.scss";
 @import "custom/global.scss";
 @import "custom/utilities.scss";
-
+@import "custom/utilities/backgrounds.scss";
+@import "custom/utilities/floating.scss";
+@import "custom/utilities/helper.scss";
+@import "custom/utilities/sizing.scss";
+@import "custom/utilities/spacing.scss";
+@import "custom/utilities/shadows.scss";
+@import "custom/utilities/text.scss";
+@import "custom/utilities/transform.scss";
 @import "custom/accordion.scss";
 @import "custom/alerts.scss";
 @import "custom/avatars.scss";
@@ -92,9 +92,7 @@
 @import "custom/progress.scss";
 @import "custom/section.scss";
 @import "custom/type.scss";
-
 // Vendor
-
 @import "custom/vendor/flatpickr.scss";
 @import "custom/vendor/headroom.scss";
 @import "custom/vendor/nouislider.scss";
