@@ -16,17 +16,15 @@ console.log("mariadb", {
     password: process.env.PASSWORD,
     database: process.env.DATABASE
 });
-var query = mapper.get('userMapper', 'selectUser', { "test_id": "111" });
 
-
-async function getList() {
+async function getList(mapperId, sqlId, param) {
     let conn, rows;
     try {
         conn = await pool.getConnection();
-        //conn.query('use test');
-        rows = await conn.query('select * from TB_BBS');
+        var exeQuery = mapper.get(mapperId, sqlId, param);
+        rows = await conn.query(exeQuery);
     } catch (err) {
-        console.log(err);
+        console.log('@@@@@@@@@@@ error @@@@:', err);
     } finally {
         if (conn) conn.end();
         return rows;
@@ -40,7 +38,7 @@ async function setData(mapperId, sqlId, param) {
         var exeQuery = mapper.get(mapperId, sqlId, param);
         rows = await conn.query(exeQuery);
     } catch (err) {
-        throw Error("setData Error");
+        console.log('@@@@@@@@@@@ error @@@@:', err);
     } finally {
         if (conn) conn.end();
         return rows;
@@ -53,10 +51,9 @@ async function getData(mapperId, sqlId, param) {
     try {
         conn = await pool.getConnection();
         var exeQuery = mapper.get(mapperId, sqlId, param);
-        console.log(exeQuery);
         rows = await conn.query(exeQuery);
     } catch (err) {
-        throw Error("getData Error");
+        console.log('@@@@@@@@@@@ error @@@@:', err);
     } finally {
         if (conn) conn.end();
         return rows[0];

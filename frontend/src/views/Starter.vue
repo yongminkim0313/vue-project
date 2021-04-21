@@ -3,6 +3,7 @@
     <div class="container">
         <div class="row">
           <file-upload></file-upload>
+          <file-download></file-download>
         </div>
         <br/>
         </div>

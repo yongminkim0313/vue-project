@@ -1,6 +1,7 @@
 <template>
     <div>
-        <fileUpload></fileUpload>
+        <file-upload></file-upload>
+        <file-download></file-download>
     </div>
 </template>
 <script>

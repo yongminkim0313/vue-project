@@ -12,6 +12,7 @@ import Card from "../components/Card";
 import Icon from "../components/Icon";
 import Messenger from "../components/Messenger";
 import FileUpload from "../components/FileUpload";
+import FileDownload from "../components/FileDownload";
 
 export default {
     install(Vue) {
@@ -29,5 +30,6 @@ export default {
         Vue.component(Icon.name, Icon);
         Vue.component(Messenger.name, Messenger);
         Vue.component(FileUpload.name, FileUpload);
+        Vue.component(FileDownload.name, FileDownload);
     }
 };

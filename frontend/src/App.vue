@@ -40,14 +40,18 @@
     <v-main>
       <router-view/>
     </v-main>
+    <messenger/>
   </v-app>
 </template>
 
 <script>
+import Messenger from '@/components/Messenger.vue';
 
 export default {
   name: 'App',
-
+  components: {
+      Messenger
+  },
   data: () => ({
     //
   }),

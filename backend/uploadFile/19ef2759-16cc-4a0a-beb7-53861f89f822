@@ -1,0 +1,370 @@
+2021-04-19 09:55:51,932  INFO [com.eco.user.controller.CollectingController] ================ 승인 처리 시작 ===========================
+2021-04-19 09:55:51,932  INFO [com.eco.user.controller.CollectingController] 0. 관리업체, 지정수집소 지정일자, 수집소 업체코드가 중복될경우 PK 제약조건에 걸림
+2021-04-19 09:55:51,933 DEBUG [jdbc.sqlonly]  org.apache.tomcat.dbcp.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)
+3. SELECT COUNT(1) ApclpRgstCnt FROM T_EL_APCLP 
+        	WHERE 1=1  
+        		AND MANAGE_CMPY_ID = '107036'
+        		AND APCLP_APPN_DE = '20210419' 
+        		AND APCLP_CMPY_ID IN (
+    				SELECT APCLP_CMPY_ID FROM T_EL_APCLP_UDRQ WHERE 1=1 AND MANAGE_CMPY_ID = '107036' AND APCLP_APPN_DE = '20210419'
+				)
+
+2021-04-19 09:55:51,936  INFO [jdbc.resultsettable] 
+|-------------|
+|apclprgstcnt |
+|-------------|
+|0            |
+|-------------|
+
+2021-04-19 09:55:51,936 DEBUG [jdbc.sqlonly]  org.apache.tomcat.dbcp.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)
+3. SELECT MAX(APCLP_APPN_DE)  MAX_APCLP_APPN_DE  FROM T_EL_APCLP   WHERE MANAGE_CMPY_ID = '107036'    AND APCLP_END_DE IS NULL
+
+2021-04-19 09:55:51,966  INFO [jdbc.resultsettable]    /*전에 최종 승인된 지정수집소관리표의 최초등록일(제출 일자)*/
+|------------------|
+|max_apclp_appn_de |
+|------------------|
+|20210416          |
+|------------------|
+
+2021-04-19 09:55:51,966  INFO [com.eco.user.controller.CollectingController] 1. 해당 관리업체의 이전 데이터의 지정수집소 종료일을 조회
+2021-04-19 09:55:51,967 DEBUG [jdbc.sqlonly]  org.apache.tomcat.dbcp.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)
+3. SELECT MIN(APCLP_END_DE) AS APCLP_END_DE
+          FROM T_EL_APCLP
+         WHERE MANAGE_CMPY_ID = '107036'
+           AND APCLP_APPN_DE = (SELECT MAX(B.APCLP_APPN_DE) 
+                                    FROM T_EL_APCLP B
+                                   WHERE B.MANAGE_CMPY_ID = '107036')
+
+2021-04-19 09:55:51,978  INFO [jdbc.resultsettable] 
+|-------------|
+|apclp_end_de |
+|-------------|
+|[null]       |
+|-------------|
+
+2021-04-19 09:55:51,978  INFO [com.eco.user.controller.CollectingController] 2. 지정수집소 종료일이 지정되어 있지 않을 경우 신규등록할 지정수집소 시작일 -1 일 의 값으로 수정
+2021-04-19 09:55:51,979 DEBUG [jdbc.sqlonly]  org.apache.tomcat.dbcp.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)
+3. UPDATE T_EL_APCLP 
+           SET APCLP_END_DE = REPLACE('20210420', '-')
+             , UPDUSR_ID = '1'
+             , UPDT_DT = SYSDATE    
+         WHERE MANAGE_CMPY_ID = '107036'
+           AND APCLP_APPN_DE = '20210416'
+
+2021-04-19 09:55:51,992  INFO [com.eco.user.controller.CollectingController] 3. 승인정보 갱신
+2021-04-19 09:55:51,993 DEBUG [jdbc.sqlonly]  org.apache.tomcat.dbcp.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)
+3. UPDATE /*updTelApclpUdrq*/ T_EL_APCLP_UDRQ 
+           SET PROGRS_STATUS_CD = 'APF'
+              ,CONFMER_ID = '1'
+              ,CONFM_DE = TO_CHAR(SYSDATE, 'YYYYMMDD')    
+              ,RTN_RESN = ''
+         WHERE MANAGE_CMPY_ID = '107036'
+           AND APCLP_APPN_DE = '20210419'
+
+2021-04-19 09:55:51,996  INFO [com.eco.user.controller.CollectingController] 4. 지정수집소 수정요청(T_EL_APCLP_UDRQ) 테이블의 데이터를 지정수집소 이력(T_EL_APCLP_HIST) 테이블에 등록
+2021-04-19 09:55:51,996 DEBUG [jdbc.sqlonly]  org.apache.tomcat.dbcp.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)
+3. INSERT /*insTelApclpHist*/ INTO T_EL_APCLP_HIST(
+               MANAGE_CMPY_ID
+              ,APCLP_APPN_DE
+              ,APCLP_CMPY_ID
+              ,HIST_SN
+              ,APCLP_BEGIN_DE
+              ,APCLP_END_DE
+              ,CONFM_DE
+              ,CONFMER_ID
+              ,RTN_RESN 
+              ,RGSTER_ID
+              ,RGST_DT
+              ,UPDUSR_ID
+              ,UPDT_DT)
+        SELECT A.MANAGE_CMPY_ID
+              ,A.APCLP_APPN_DE
+              ,A.APCLP_CMPY_ID
+              ,(SELECT NVL(MAX(B.HIST_SN), 0) + 1 FROM T_EL_APCLP_HIST B WHERE B.MANAGE_CMPY_ID = A.MANAGE_CMPY_ID) AS HIST_SN
+              ,A.APCLP_BEGIN_DE
+              ,A.APCLP_END_DE
+              ,A.CONFM_DE
+              ,A.CONFMER_ID
+              ,A.RTN_RESN 
+              ,A.RGSTER_ID
+              ,A.RGST_DT
+              ,A.UPDUSR_ID
+              ,A.UPDT_DT
+          FROM T_EL_APCLP_UDRQ A
+         WHERE A.MANAGE_CMPY_ID = '107036'
+           AND A.APCLP_APPN_DE = '20210419'
+
+2021-04-19 09:55:52,002  INFO [com.eco.user.controller.CollectingController] 5. 지정수집소 수정요청(T_EL_APCLP_UDRQ) 테이블의 데이터를 지정수집소(T_EL_APCLP) 테이블에 등록
+2021-04-19 09:55:52,002 DEBUG [jdbc.sqlonly]  org.apache.tomcat.dbcp.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)
+3. INSERT /*insTelApclp*/ INTO T_EL_APCLP(
+               MANAGE_CMPY_ID
+              ,APCLP_APPN_DE
+              ,APCLP_CMPY_ID
+              ,APCLP_BEGIN_DE
+              ,APCLP_END_DE
+              ,CONFM_DE
+              ,CONFMER_ID
+              ,RGSTER_ID
+              ,RGST_DT
+              ,UPDUSR_ID
+              ,UPDT_DT)
+        SELECT A.MANAGE_CMPY_ID
+              ,A.APCLP_APPN_DE
+              ,A.APCLP_CMPY_ID
+              ,A.APCLP_BEGIN_DE
+              ,A.APCLP_END_DE
+              ,A.CONFM_DE
+              ,A.CONFMER_ID
+              ,A.RGSTER_ID
+              ,A.RGST_DT
+              ,A.UPDUSR_ID
+              ,A.UPDT_DT
+          FROM T_EL_APCLP_UDRQ A
+         WHERE MANAGE_CMPY_ID = '107036'
+           AND APCLP_APPN_DE = '20210419'
+
+2021-04-19 09:55:52,005  INFO [com.eco.user.controller.CollectingController] 6. 지정수집소 수정요청(T_EL_APCLP_UDRQ) 테이블의 데이터를 삭제
+2021-04-19 09:55:52,007 DEBUG [jdbc.sqlonly]  org.apache.tomcat.dbcp.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)
+3. DELETE /*delTelApclpUdrq*/ 
+          FROM T_EL_APCLP_UDRQ
+         WHERE 1=1
+
+           AND MANAGE_CMPY_ID = '107036' 
+
+           AND APCLP_APPN_DE = '20210419'
+
+2021-04-19 09:55:52,011  INFO [com.eco.user.controller.CollectingController] 7. 신규 지정수집소 승인되기전, 지정수집소 업체ID와 업체의 지정수집소 시작일과 종료일을 조회
+2021-04-19 09:55:52,011 DEBUG [jdbc.sqlonly]  org.apache.tomcat.dbcp.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)
+3. SELECT /*getStartEndDate*/ APCLP_CMPY_ID
+              ,APCLP_BEGIN_DE
+              ,APCLP_END_DE
+          FROM T_EL_APCLP
+         WHERE MANAGE_CMPY_ID = '107036'
+           AND APCLP_APPN_DE = '20210416'
+
+2021-04-19 09:55:52,015  INFO [jdbc.resultsettable] 
+|--------------|---------------|-------------|
+|apclp_cmpy_id |apclp_begin_de |apclp_end_de |
+|--------------|---------------|-------------|
+|101572        |20210420       |20210420     |
+|106224        |20210420       |20210420     |
+|--------------|---------------|-------------|
+
+2021-04-19 09:55:52,015  INFO [com.eco.user.controller.CollectingController] 7.1. 수집관리표(T_EL_COLCT_MNGCRT)의 지정수집소 여부를 'N'로 수정
+2021-04-19 09:55:52,015 DEBUG [jdbc.sqlonly]  org.apache.tomcat.dbcp.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)
+3. UPDATE /*updTelColctMngcrt*/ T_EL_COLCT_MNGCRT
+           SET APCLP_YN  = 'N'
+              ,UPDUSR_ID = '1'
+              ,UPDT_DT   = SYSDATE
+         WHERE UNDTAKE_CMPY_ID = '101572'
+
+           AND COLCT_CNVYC_DE BETWEEN '20210420' AND '20210420'
+
+           AND APCLP_YN != 'N'
+           AND COLCT_TY_CD IN ('002', '003')
+
+2021-04-19 09:55:52,017  INFO [com.eco.user.controller.CollectingController] 7.2 수집관리표 수정요청(T_EL_COLCT_MNGCRT_UDRQ)의 지정수집소 여부를 'N'로 수정
+2021-04-19 09:55:52,017 DEBUG [jdbc.sqlonly]  org.apache.tomcat.dbcp.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)
+3. UPDATE /*updTelColctMngcrtUdrq*/ T_EL_COLCT_MNGCRT_UDRQ
+           SET APCLP_YN  = 'N'
+              ,UPDUSR_ID = '1'
+              ,UPDT_DT   = SYSDATE
+         WHERE UNDTAKE_CMPY_ID = '101572'
+
+           AND COLCT_CNVYC_DE BETWEEN '20210420' AND '20210420'
+
+           AND APCLP_YN != 'N'
+           AND COLCT_TY_CD IN ('002', '003')
+
+2021-04-19 09:55:52,019  INFO [com.eco.user.controller.CollectingController] 7.3 운반관리표(T_EL_CNVYC_MNGCRT)의 지정수집소 여부를 'N'로 수정
+2021-04-19 09:55:52,020 DEBUG [jdbc.sqlonly]  org.apache.tomcat.dbcp.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)
+3. UPDATE /*updTelCnvycMngcrt*/ T_EL_CNVYC_MNGCRT
+           SET APCLP_YN  = 'N'
+             , UPDUSR_ID = '1'
+             , UPDT_DT = SYSDATE
+         WHERE UNDTAKE_CMPY_ID = '101572'
+
+           AND CNVYC_DE BETWEEN '20210420' AND '20210420'
+
+           AND APCLP_YN != 'N'
+           AND ((DSTBR_VRSC_RTRV_YN = 'Y' AND HNDVR_CMPY_INDUTY_CD IN ('001', '002', '003'))
+            OR (HNDVR_CMPY_INDUTY_CD IN ('005', '007')))
+
+2021-04-19 09:55:52,024  INFO [com.eco.user.controller.CollectingController] 7.4 운반관리표 수정요청(T_EL_CNVYC_MNGCRT_UDRQ)의 지정수집소 여부를 'N'로 수정
+2021-04-19 09:55:52,024 DEBUG [jdbc.sqlonly]  org.apache.tomcat.dbcp.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)
+3. UPDATE /*updTelCnvycMngcrt*/ T_EL_CNVYC_MNGCRT_UDRQ
+           SET APCLP_YN  = 'N'
+             , UPDUSR_ID = '1'
+             , UPDT_DT = SYSDATE
+         WHERE UNDTAKE_CMPY_ID = '101572'
+
+           AND CNVYC_DE BETWEEN '20210420' AND '20210420'
+
+           AND APCLP_YN != 'N'
+           AND ((DSTBR_VRSC_RTRV_YN = 'Y' AND HNDVR_CMPY_INDUTY_CD IN ('001', '002', '003'))
+            OR (HNDVR_CMPY_INDUTY_CD IN ('005', '007')))
+
+2021-04-19 09:55:52,027  INFO [com.eco.user.controller.CollectingController] 7.1. 수집관리표(T_EL_COLCT_MNGCRT)의 지정수집소 여부를 'N'로 수정
+2021-04-19 09:55:52,027 DEBUG [jdbc.sqlonly]  org.apache.tomcat.dbcp.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)
+3. UPDATE /*updTelColctMngcrt*/ T_EL_COLCT_MNGCRT
+           SET APCLP_YN  = 'N'
+              ,UPDUSR_ID = '1'
+              ,UPDT_DT   = SYSDATE
+         WHERE UNDTAKE_CMPY_ID = '106224'
+
+           AND COLCT_CNVYC_DE BETWEEN '20210420' AND '20210420'
+
+           AND APCLP_YN != 'N'
+           AND COLCT_TY_CD IN ('002', '003')
+
+2021-04-19 09:55:52,033  INFO [com.eco.user.controller.CollectingController] 7.2 수집관리표 수정요청(T_EL_COLCT_MNGCRT_UDRQ)의 지정수집소 여부를 'N'로 수정
+2021-04-19 09:55:52,033 DEBUG [jdbc.sqlonly]  org.apache.tomcat.dbcp.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)
+3. UPDATE /*updTelColctMngcrtUdrq*/ T_EL_COLCT_MNGCRT_UDRQ
+           SET APCLP_YN  = 'N'
+              ,UPDUSR_ID = '1'
+              ,UPDT_DT   = SYSDATE
+         WHERE UNDTAKE_CMPY_ID = '106224'
+
+           AND COLCT_CNVYC_DE BETWEEN '20210420' AND '20210420'
+
+           AND APCLP_YN != 'N'
+           AND COLCT_TY_CD IN ('002', '003')
+
+2021-04-19 09:55:52,035  INFO [com.eco.user.controller.CollectingController] 7.3 운반관리표(T_EL_CNVYC_MNGCRT)의 지정수집소 여부를 'N'로 수정
+2021-04-19 09:55:52,036 DEBUG [jdbc.sqlonly]  org.apache.tomcat.dbcp.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)
+3. UPDATE /*updTelCnvycMngcrt*/ T_EL_CNVYC_MNGCRT
+           SET APCLP_YN  = 'N'
+             , UPDUSR_ID = '1'
+             , UPDT_DT = SYSDATE
+         WHERE UNDTAKE_CMPY_ID = '106224'
+
+           AND CNVYC_DE BETWEEN '20210420' AND '20210420'
+
+           AND APCLP_YN != 'N'
+           AND ((DSTBR_VRSC_RTRV_YN = 'Y' AND HNDVR_CMPY_INDUTY_CD IN ('001', '002', '003'))
+            OR (HNDVR_CMPY_INDUTY_CD IN ('005', '007')))
+
+2021-04-19 09:55:52,037  INFO [com.eco.user.controller.CollectingController] 7.4 운반관리표 수정요청(T_EL_CNVYC_MNGCRT_UDRQ)의 지정수집소 여부를 'N'로 수정
+2021-04-19 09:55:52,037 DEBUG [jdbc.sqlonly]  org.apache.tomcat.dbcp.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)
+3. UPDATE /*updTelCnvycMngcrt*/ T_EL_CNVYC_MNGCRT_UDRQ
+           SET APCLP_YN  = 'N'
+             , UPDUSR_ID = '1'
+             , UPDT_DT = SYSDATE
+         WHERE UNDTAKE_CMPY_ID = '106224'
+
+           AND CNVYC_DE BETWEEN '20210420' AND '20210420'
+
+           AND APCLP_YN != 'N'
+           AND ((DSTBR_VRSC_RTRV_YN = 'Y' AND HNDVR_CMPY_INDUTY_CD IN ('001', '002', '003'))
+            OR (HNDVR_CMPY_INDUTY_CD IN ('005', '007')))
+
+2021-04-19 09:55:52,041  INFO [com.eco.user.controller.CollectingController] 8. 승인된 지정수집소 업체ID와 업체의 지정수집소 시작일과 종료일을 조회
+2021-04-19 09:55:52,041 DEBUG [jdbc.sqlonly]  org.apache.tomcat.dbcp.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)
+3. SELECT /*getStartEndDate*/ APCLP_CMPY_ID
+              ,APCLP_BEGIN_DE
+              ,APCLP_END_DE
+          FROM T_EL_APCLP
+         WHERE MANAGE_CMPY_ID = '107036'
+           AND APCLP_APPN_DE = '20210419'
+
+2021-04-19 09:55:52,045  INFO [jdbc.resultsettable] 
+|--------------|---------------|-------------|
+|apclp_cmpy_id |apclp_begin_de |apclp_end_de |
+|--------------|---------------|-------------|
+|107789        |20210421       |[null]       |
+|110369        |20210421       |[null]       |
+|--------------|---------------|-------------|
+
+2021-04-19 09:55:52,045  INFO [com.eco.user.controller.CollectingController] 9. 수집관리표(T_EL_COLCT_MNGCRT)의 지정수집소 여부를 'Y'로 수정
+2021-04-19 09:55:52,046 DEBUG [jdbc.sqlonly]  org.apache.tomcat.dbcp.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)
+3. UPDATE /*updTelColctMngcrt*/ T_EL_COLCT_MNGCRT
+           SET APCLP_YN  = 'Y'
+              ,UPDUSR_ID = '1'
+              ,UPDT_DT   = SYSDATE
+         WHERE UNDTAKE_CMPY_ID = '107789'
+
+           AND APCLP_YN != 'Y'
+           AND COLCT_TY_CD IN ('002', '003')
+
+2021-04-19 09:55:52,052  INFO [com.eco.user.controller.CollectingController] 10. 수집관리표 수정요청(T_EL_COLCT_MNGCRT_UDRQ)의 지정수집소 여부를 'Y'로 수정
+2021-04-19 09:55:52,053 DEBUG [jdbc.sqlonly]  org.apache.tomcat.dbcp.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)
+3. UPDATE /*updTelColctMngcrtUdrq*/ T_EL_COLCT_MNGCRT_UDRQ
+           SET APCLP_YN  = 'Y'
+              ,UPDUSR_ID = '1'
+              ,UPDT_DT   = SYSDATE
+         WHERE UNDTAKE_CMPY_ID = '107789'
+
+           AND APCLP_YN != 'Y'
+           AND COLCT_TY_CD IN ('002', '003')
+
+2021-04-19 09:55:52,057  INFO [com.eco.user.controller.CollectingController] 11. 운반관리표(T_EL_CNVYC_MNGCRT)의 지정수집소 여부를 'Y'로 수정
+2021-04-19 09:55:52,058 DEBUG [jdbc.sqlonly]  org.apache.tomcat.dbcp.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)
+3. UPDATE /*updTelCnvycMngcrt*/ T_EL_CNVYC_MNGCRT
+           SET APCLP_YN  = 'Y'
+             , UPDUSR_ID = '1'
+             , UPDT_DT = SYSDATE
+         WHERE UNDTAKE_CMPY_ID = '107789'
+
+           AND APCLP_YN != 'Y'
+           AND ((DSTBR_VRSC_RTRV_YN = 'Y' AND HNDVR_CMPY_INDUTY_CD IN ('001', '002', '003'))
+            OR (HNDVR_CMPY_INDUTY_CD IN ('005', '007')))
+
+2021-04-19 09:55:52,061  INFO [com.eco.user.controller.CollectingController] 12. 운반관리표 수정요청(T_EL_CNVYC_MNGCRT_UDRQ)의 지정수집소 여부를 'Y'로 수정
+2021-04-19 09:55:52,061 DEBUG [jdbc.sqlonly]  org.apache.tomcat.dbcp.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)
+3. UPDATE /*updTelCnvycMngcrt*/ T_EL_CNVYC_MNGCRT_UDRQ
+           SET APCLP_YN  = 'Y'
+             , UPDUSR_ID = '1'
+             , UPDT_DT = SYSDATE
+         WHERE UNDTAKE_CMPY_ID = '107789'
+
+           AND APCLP_YN != 'Y'
+           AND ((DSTBR_VRSC_RTRV_YN = 'Y' AND HNDVR_CMPY_INDUTY_CD IN ('001', '002', '003'))
+            OR (HNDVR_CMPY_INDUTY_CD IN ('005', '007')))
+
+2021-04-19 09:55:52,066  INFO [com.eco.user.controller.CollectingController] 9. 수집관리표(T_EL_COLCT_MNGCRT)의 지정수집소 여부를 'Y'로 수정
+2021-04-19 09:55:52,066 DEBUG [jdbc.sqlonly]  org.apache.tomcat.dbcp.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)
+3. UPDATE /*updTelColctMngcrt*/ T_EL_COLCT_MNGCRT
+           SET APCLP_YN  = 'Y'
+              ,UPDUSR_ID = '1'
+              ,UPDT_DT   = SYSDATE
+         WHERE UNDTAKE_CMPY_ID = '110369'
+
+           AND APCLP_YN != 'Y'
+           AND COLCT_TY_CD IN ('002', '003')
+
+2021-04-19 09:55:52,068  INFO [com.eco.user.controller.CollectingController] 10. 수집관리표 수정요청(T_EL_COLCT_MNGCRT_UDRQ)의 지정수집소 여부를 'Y'로 수정
+2021-04-19 09:55:52,068 DEBUG [jdbc.sqlonly]  org.apache.tomcat.dbcp.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)
+3. UPDATE /*updTelColctMngcrtUdrq*/ T_EL_COLCT_MNGCRT_UDRQ
+           SET APCLP_YN  = 'Y'
+              ,UPDUSR_ID = '1'
+              ,UPDT_DT   = SYSDATE
+         WHERE UNDTAKE_CMPY_ID = '110369'
+
+           AND APCLP_YN != 'Y'
+           AND COLCT_TY_CD IN ('002', '003')
+
+2021-04-19 09:55:52,075  INFO [com.eco.user.controller.CollectingController] 11. 운반관리표(T_EL_CNVYC_MNGCRT)의 지정수집소 여부를 'Y'로 수정
+2021-04-19 09:55:52,075 DEBUG [jdbc.sqlonly]  org.apache.tomcat.dbcp.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)
+3. UPDATE /*updTelCnvycMngcrt*/ T_EL_CNVYC_MNGCRT
+           SET APCLP_YN  = 'Y'
+             , UPDUSR_ID = '1'
+             , UPDT_DT = SYSDATE
+         WHERE UNDTAKE_CMPY_ID = '110369'
+
+           AND APCLP_YN != 'Y'
+           AND ((DSTBR_VRSC_RTRV_YN = 'Y' AND HNDVR_CMPY_INDUTY_CD IN ('001', '002', '003'))
+            OR (HNDVR_CMPY_INDUTY_CD IN ('005', '007')))
+
+2021-04-19 09:55:52,078  INFO [com.eco.user.controller.CollectingController] 12. 운반관리표 수정요청(T_EL_CNVYC_MNGCRT_UDRQ)의 지정수집소 여부를 'Y'로 수정
+2021-04-19 09:55:52,078 DEBUG [jdbc.sqlonly]  org.apache.tomcat.dbcp.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:172)
+3. UPDATE /*updTelCnvycMngcrt*/ T_EL_CNVYC_MNGCRT_UDRQ
+           SET APCLP_YN  = 'Y'
+             , UPDUSR_ID = '1'
+             , UPDT_DT = SYSDATE
+         WHERE UNDTAKE_CMPY_ID = '110369'
+
+           AND APCLP_YN != 'Y'
+           AND ((DSTBR_VRSC_RTRV_YN = 'Y' AND HNDVR_CMPY_INDUTY_CD IN ('001', '002', '003'))
+            OR (HNDVR_CMPY_INDUTY_CD IN ('005', '007')))
+
+2021-04-19 09:55:52,084  INFO [com.eco.user.controller.CollectingController] ================ 승인 처리 종료 ===========================

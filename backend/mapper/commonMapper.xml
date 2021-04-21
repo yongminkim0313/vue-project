@@ -32,4 +32,16 @@
         FROM T_CM_ATCHMNFL
         WHERE ATCHMNFL_ID = #{atchmnflId}
     </select>
+    <select id="selectAtchmnflAll">
+        SELECT 
+            ATCHMNFL_ID
+            , ATCHMNFL_NM
+            , ATCHMNFL_ORIGIN_FILE_NM
+            , ATCHMNFL_SIZE
+            , ATCHMNFL_PATH
+            , ATCHMNFL_EXTSN_NM
+            , RGSTER_ID
+            , RGST_DT
+        FROM T_CM_ATCHMNFL
+    </select>
 </mapper>
