@@ -43,6 +43,13 @@ Vue.use(VueAxios, Axios);
 Axios.defaults.baseURL = 'http://localhost:3000';
 Axios.defaults.timeout = 2000;
 
+Axios.interceptors.request.use(
+    function(config) {
+        console.log('@@@@@@@@@@@@@@@@@');
+        return config
+    }
+)
+
 new Vue({
     router,
     vuetify,

@@ -9,6 +9,7 @@ const pool = mariadb.createPool({
     password: process.env.PASSWORD,
     database: process.env.DATABASE
 });
+/*
 console.log("mariadb", {
     host: process.env.HOST,
     port: process.env.PORT,
@@ -16,7 +17,7 @@ console.log("mariadb", {
     password: process.env.PASSWORD,
     database: process.env.DATABASE
 });
-
+*/
 async function getList(mapperId, sqlId, param) {
     let conn, rows;
     try {
@@ -60,8 +61,23 @@ async function getData(mapperId, sqlId, param) {
     }
 }
 
+async function delData(mapperId, sqlId, param) {
+    let conn, rows;
+    try {
+        conn = await pool.getConnection();
+        var exeQuery = mapper.get(mapperId, sqlId, param);
+        rows = await conn.query(exeQuery);
+    } catch (err) {
+        console.log('@@@@@@@@@@@ error @@@@:', err);
+    } finally {
+        if (conn) conn.end();
+        return true;
+    }
+}
+
 module.exports = {
     getList: getList,
     setData: setData,
-    getData: getData
+    getData: getData,
+    delData: delData
 }

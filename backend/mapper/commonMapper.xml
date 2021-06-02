@@ -44,4 +44,7 @@
             , RGST_DT
         FROM T_CM_ATCHMNFL
     </select>
+    <delete id="deleteAtchmnfl">
+        DELETE FROM T_CM_ATCHMNFL WHERE ATCHMNFL_ID = #{atchmnflId} 
+    </delete>
 </mapper>

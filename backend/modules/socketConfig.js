@@ -15,7 +15,12 @@ module.exports = (io, fs, db, winston) => {
 
         socket.on('messenger', (msg) => {
             socket.broadcast.emit('messenger', msg);
-        })
+        });
+
+        socket.on('fileDel', () => {
+            socket.broadcast.emit('fileCommend', { fileCommend: 'refresh' });
+            socket.emit('fileCommend', { fileCommend: 'refresh' });
+        });
 
         var Files = Object();
         socket.on('Start', (data) => {
@@ -61,6 +66,8 @@ module.exports = (io, fs, db, winston) => {
                             fs.unlink(temp + Name, function(err) {
                                 if (err) winston.error(err);
                                 socket.emit('endData', { 'Place': Place, 'Percent': 100 });
+                                socket.broadcast.emit('fileCommend', { fileCommend: 'refresh' });
+                                socket.emit('fileCommend', { fileCommend: 'refresh' });
                                 winston.info(Name + " is deleted.");
                                 var dbData = {
                                     "atchmnflNm": atchmnflNm,
@@ -88,6 +95,7 @@ module.exports = (io, fs, db, winston) => {
                 socket.emit('MoreData', { 'Place': Place, 'Percent': Percent });
             }
         });
+
     });
 
 }

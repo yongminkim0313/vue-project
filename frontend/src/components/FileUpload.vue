@@ -57,7 +57,7 @@ export default {
   created() {
     this.$socket.on("MoreData", (data) => {
       //console.log("MoreData: ", data);
-      this.progress = data.Percent;
+      this.progress = Math.round(data.Percent);
       var Place = data.Place * 524288;
       var NewFile = "";
       if (this.currentFile.webkitSlice)
@@ -109,9 +109,6 @@ export default {
       }else{
         this.currentFile = null;
       }
-    },
-    download() {
-      console.log(process.env.VUE_APP_API_URL + "/api/download");
     },
   },
 };
