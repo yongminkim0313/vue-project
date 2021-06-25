@@ -16,9 +16,10 @@
 
 */
 import Vue from "vue";
+import VueAWN from "vue-awesome-notifications"
 import App from "./App.vue";
-import router from "./starterRouter";
-// import router from "./router";
+//import router from "./starterRouter";
+import router from "./router";
 import Argon from "./plugins/argon-kit";
 import './registerServiceWorker'
 import Axios from "axios";
@@ -35,6 +36,7 @@ Vue.prototype.$socket = socket;
 
 Vue.use(vmodal, { dialog: true })
 Vue.use(Chat)
+Vue.use(VueAWN, {})
 
 Vue.config.productionTip = false;
 Vue.use(Argon);
@@ -43,15 +45,25 @@ Vue.use(VueAxios, Axios);
 Axios.defaults.baseURL = 'http://localhost:3000';
 Axios.defaults.timeout = 2000;
 
-Axios.interceptors.request.use(
-    function(config) {
-        console.log('@@@@@@@@@@@@@@@@@');
-        return config
-    }
-)
-
-new Vue({
+const vue = new Vue({
     router,
     vuetify,
     render: h => h(App)
 }).$mount("#app");
+
+// 응답 인터셉터 추가
+Axios.interceptors.response.use(
+    function(response) { // 응답 데이터를 가공
+        vue.$awn.alert('OK');
+        return response;
+    },
+    function(error) { // 오류 응답을 처리
+        var errorStatus = error.response.status;
+
+        if (errorStatus == '400') vue.$awn.alert(error.response.data);
+        if (errorStatus == '401') vue.$awn.alert('인증에 실패했습니다.');
+        if (errorStatus == '403') vue.$awn.alert('권한이 없습니다.');
+        if (errorStatus == '500') vue.$awn.alert('서버에서 오류가 발생하였습니다.');
+        return Promise.reject(error);
+    }
+);

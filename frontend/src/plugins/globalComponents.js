@@ -13,6 +13,7 @@ import Icon from "../components/Icon";
 import Messenger from "../components/Messenger";
 import FileUpload from "../components/FileUpload";
 import FileDownload from "../components/FileDownload";
+import LoginDialog from '../components/LoginDialog';
 
 export default {
     install(Vue) {
@@ -31,5 +32,6 @@ export default {
         Vue.component(Messenger.name, Messenger);
         Vue.component(FileUpload.name, FileUpload);
         Vue.component(FileDownload.name, FileDownload);
+        Vue.component(LoginDialog.name, LoginDialog);
     }
 };

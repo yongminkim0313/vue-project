@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="tbBbs">  
-  <select id="selectTbBbs">
-    SELECT * FROM user WHERE NAME = #{name}
+<mapper namespace="test">  
+  <select id="selectYmBoardList">
+    SELECT 
+      board_no as boardNo,
+      subject,
+      CAST( contents AS CHAR (10000) CHARACTER SET UTF8) as contents 
+    FROM YM_BOARD
   </select>
+
+<insert id = 'saveYmBoard'>
+  INSERT INTO YM_BOARD (board_no, subject, contents)
+  SELECT board_no, subject, contents
+  FROM YM_BOARD 
+  WHERE board_no = #{boardNo}
+  ON DUPLICATE KEY UPDATE
+    subject = #{subject}
+    ,contents = #{contents}
+</insert>
+  
 </mapper>
