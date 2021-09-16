@@ -2,7 +2,6 @@
 <v-card
     :loading="loading"
     class="mx-auto"
-    max-width="980"
   >
 
   <v-btn
@@ -19,20 +18,12 @@
       :loading="loading"
       :disabled="loading"
       color="secondary"
-      @click="test1()"
+      @click="test()"
     >
-      test1
+      test
     </v-btn>
-    <v-btn
-      class="ma-2"
-      :loading="loading"
-      :disabled="loading"
-      color="secondary"
-      @click="test2()"
-    >
-      test2
-    </v-btn>
-    <file-download/>
+    
+    <!-- <file-download/> -->
 <v-simple-table>
     <template v-slot:default>
       <thead>
@@ -53,6 +44,47 @@
         >
           <td>{{ item.subject }}</td>
           <td>{{ item.contents }}</td>
+        </tr>
+      </tbody>
+    </template>
+  </v-simple-table>
+
+
+
+  <v-simple-table>
+    <template v-slot:default>
+      <thead>
+        <tr>
+          <th class="text-left">
+            No
+          </th>
+          <th class="text-left">
+            제목
+          </th>
+          <th class="text-left">
+            내용
+          </th>
+          <th class="text-left">
+            상세
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          v-for="(item, index) in newsList"
+          :key="item.title"
+          @dblclick="movePage(index)"
+        >
+        <td>{{ index+1 }}</td>
+        <td><v-img
+              :lazy-src=item.image_url
+              max-height="150"
+              max-width="250"
+              :src=item.image_url
+            ></v-img>
+        </td>
+          <td>{{ item.title }}</td>
+          <td>{{ item.summary }}</td>
         </tr>
       </tbody>
     </template>
@@ -134,14 +166,18 @@
 </template>
 
 <script>
-import FileDownload from '../components/FileDownload.vue';
-import FileUpload from '../components/FileUpload.vue';
+//import FileDownload from '../components/FileDownload.vue';
+//import FileUpload from '../components/FileUpload.vue';
 export default {
-  components: { FileUpload, FileDownload },
+  components: { 
+    //FileUpload
+  //, FileDownload 
+  },
   name: "Board",
   data () {
       return {
         boardList: [],
+        newsList: [],
         loading: false,
         dialog : false,
         saveBoard:{boardNo: 0, subject: '', contents: ''}
@@ -171,25 +207,15 @@ export default {
         this.saveBoard = this.boardList[no];
         this.dialog = true;
       },
-      test1(){
-        this.axios.get('/test1',{})
-        .then(item => {
-          console.log(item);
-        })
-        .then(() =>{
-          _this.loading = false;
-          _this.dialog = false;
+      test(){
+        var _this = this;
+        this.$socket.emit('test', {}, (data)=>{
+          console.log(data)
+          _this.newsList = data;
         });
       },
-      test2(){
-        this.axios.get('/test2',{})
-        .then(item => {
-          console.log(item);
-        })
-        .then(() =>{
-          _this.loading = false;
-          _this.dialog = false;
-        });
+      movePage(no){
+        location.href=this.newsList[no].url;
       }
     }
 }

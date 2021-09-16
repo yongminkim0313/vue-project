@@ -1,11 +1,12 @@
-module.exports = (socket, db) => {
-    socket.on('selectUserList', (data, callback) => {
+const crawling = require('../modules/crawlingTest');
+
+function runFunction(socket, db, callName) {
+    socket.on(callName, (data, callback) => {
         console.log('data', data);
         console.log('callback', callback);
         try {
-            db.getList('tbBbsMapper', 'selectUserList', {})
-                .then(row => {
-                    console.log(row);
+            db.getList('test', callName, data)
+                .then(function(row) {
                     callback({
                         status: "OK",
                         row
@@ -18,43 +19,26 @@ module.exports = (socket, db) => {
             });
         }
     });
+}
 
-    socket.on('selectYmBoardList', (data, callback) => {
-        try {
-            db.getList('test', 'selectYmBoardList', {})
-                .then(row => {
-                    callback({
-                        status: "OK",
-                        row
-                    });
-                })
-                .catch(err => { console.log('err', err) })
-        } catch (e) {
-            callback({
-                status: "NOK"
-            });
-        }
-    });
-
-    socket.on('saveYmBoard', (data, callback) => {
+function crawlingFunction(socket, db, callName) {
+    socket.on(callName, async(data, callback) => {
         console.log('data', data);
         console.log('callback', callback);
         try {
-            db.setData('test', 'saveYmBoard', data)
-                .then(row => {
-                    console.log(row);
-                    callback({
-                        status: "OK",
-                        row
-                    });
-                })
-                .catch(err => { console.log('err', err) })
+            var crawlingData = await crawling.crawlingTest(db, data);
+            callback(crawlingData);
         } catch (e) {
+            console.log(e);
             callback({
                 status: "NOK"
             });
         }
     });
+}
 
-
+module.exports = async(socket, db) => {
+    runFunction(socket, db, 'selectYmBoardList');
+    runFunction(socket, db, 'saveYmBoard');
+    crawlingFunction(socket, db, 'test');
 }

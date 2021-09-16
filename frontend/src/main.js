@@ -32,6 +32,7 @@ import vuetify from './plugins/vuetify';
 const socket = io(process.env.VUE_APP_SOCKET_URL, {
     path: "/msg/",
 });
+
 Vue.prototype.$socket = socket;
 
 Vue.use(vmodal, { dialog: true })
@@ -44,6 +45,7 @@ Vue.use(VueAxios, Axios);
 
 Axios.defaults.baseURL = 'http://localhost:3000';
 Axios.defaults.timeout = 2000;
+Axios.defaults.withCredentials = true;
 
 const vue = new Vue({
     router,
@@ -54,7 +56,7 @@ const vue = new Vue({
 // 응답 인터셉터 추가
 Axios.interceptors.response.use(
     function(response) { // 응답 데이터를 가공
-        vue.$awn.alert('OK');
+        vue.$awn.info('OK');
         return response;
     },
     function(error) { // 오류 응답을 처리

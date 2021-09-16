@@ -9,13 +9,27 @@ import AppFooter from "./layout/AppFooter";
 import Starter from "./views/Starter.vue";
 import Home from "./views/Home.vue";
 import Board from "./views/Board.vue";
+import News from "./views/News.vue";
 import CustomComponents from "./views/CustomComponents.vue";
+
+import JesusdreamHeader from "./views/jesusdream/JesusdreamHeader.vue";
+import JesusdreamIndex from "./views/jesusdream/JesusdreamIndex.vue";
+import JesusdreamFooter from "./views/jesusdream/JesusdreamFooter.vue";
 
 Vue.use(Router);
 
 export default new Router({
     mode: "history",
     routes: [{
+            path: "/jesusdream",
+            name: "jesusdream",
+            components: {
+                header: JesusdreamHeader,
+                default: JesusdreamIndex,
+                footer: JesusdreamFooter
+            }
+        },
+        {
             path: "/",
             name: "Starter",
             components: {
@@ -85,7 +99,16 @@ export default new Router({
                 default: Board,
                 footer: AppFooter
             }
-        }
+        },
+        {
+            path: "/News",
+            name: "News",
+            components: {
+                header: AppHeader,
+                default: News,
+                footer: AppFooter
+            }
+        },
     ],
     scrollBehavior: to => {
         if (to.hash) {

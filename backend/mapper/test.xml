@@ -9,13 +9,17 @@
   </select>
 
 <insert id = 'saveYmBoard'>
-  INSERT INTO YM_BOARD (board_no, subject, contents)
-  SELECT board_no, subject, contents
-  FROM YM_BOARD 
-  WHERE board_no = #{boardNo}
-  ON DUPLICATE KEY UPDATE
-    subject = #{subject}
-    ,contents = #{contents}
+  INSERT INTO YM_BOARD (subject, contents ) 
+  VALUES(  #{subject}, #{contents}  )
 </insert>
+
+<select id="crawling">
+    select a.c_no , a.c_url , b.c_detail_no, b.c_selector, b.c_name
+  from 
+  crawling a 
+  inner join crawling_detail b
+  on a.c_no = b.c_no
+  where a.c_no = #{c_no}
+  </select>
   
 </mapper>
