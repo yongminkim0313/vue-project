@@ -1,5 +1,7 @@
 const temp = "./temp/";
 const uploadFile = "./uploadFile/";
+const fs = require('fs');
+const winston = require('../modules/winstonConfig');
 
 module.exports = (socket) => {
     socket.on('fileDel', () => {
@@ -36,7 +38,7 @@ module.exports = (socket) => {
         Files[Name].Downloaded += data.Data.length;
         Files[Name].Data += data.Data;
         if (Files[Name].Downloaded == Files[Name].FileSize) {
-            var atchmnflNm = uuidv4();
+            var atchmnflNm = Name;
             fs.write(Files[Name].Handler, Files[Name].Data, null, 'Binary', function(err, written) {
 
                 if (err) winston.error(err);
@@ -54,15 +56,15 @@ module.exports = (socket) => {
                             socket.broadcast.emit('fileCommend', { fileCommend: 'refresh' });
                             socket.emit('fileCommend', { fileCommend: 'refresh' });
                             winston.info(Name + " is deleted.");
-                            var dbData = {
-                                "atchmnflNm": atchmnflNm,
-                                "atchmnflOriginFileNm": Name,
-                                "atchmnflSize": Files[Name].FileSize,
-                                "atchmnflPath": uploadFile + atchmnflNm,
-                                "atchmnflExtsnNm": Name.substr(Name.lastIndexOf(".") + 1),
-                                "rgsterId": '1'
-                            }
-                            db.setData('commonMapper', 'insertAtchmnfl', dbData)
+                            // var dbData = {
+                            //     "atchmnflNm": atchmnflNm,
+                            //     "atchmnflOriginFileNm": Name,
+                            //     "atchmnflSize": Files[Name].FileSize,
+                            //     "atchmnflPath": uploadFile + atchmnflNm,
+                            //     "atchmnflExtsnNm": Name.substr(Name.lastIndexOf(".") + 1),
+                            //     "rgsterId": '1'
+                            // }
+                            // db.setData('commonMapper', 'insertAtchmnfl', dbData)
                         });
                     });
                 });
